@@ -22,6 +22,8 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Preloader from "@/components/Preloader";
+import GSAPWrapper from "@/components/GSAPWrapper";
 
 export default function RootLayout({
   children,
@@ -35,11 +37,14 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <Navbar />
-          <SmoothScroll>
-            {children}
-            <Footer />
-          </SmoothScroll>
+          <Preloader />
+          <GSAPWrapper>
+            <Navbar />
+            <SmoothScroll>
+              {children}
+              <Footer />
+            </SmoothScroll>
+          </GSAPWrapper>
         </ThemeProvider>
       </body>
     </html>

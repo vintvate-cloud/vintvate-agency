@@ -12,18 +12,7 @@ const teamSync = [
         image: "/vedant.jpg",
         bio: "The vision behind Vintvate. Creating digital legacies."
     },
-    {
-        name: "Rajat Jhade",
-        role: "Tech Lead",
-        image: "/rajat.jpg",
-        bio: "Engineering the impossible. Code is art."
-    },
-    {
-        name: "Kushagra",
-        role: "The CA",
-        image: "/20250413_235710.jpg",
-        bio: "Master of numbers. Architect of growth."
-    }
+
 ];
 
 export default function TeamGrid() {

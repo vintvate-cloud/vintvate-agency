@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -11,6 +11,7 @@ import { useTheme } from "./ThemeProvider";
 const navLinks = [
     { name: "The Team", href: "/team" },
     { name: "About", href: "/about" },
+    { name: "Signal", href: "/signal" },
     { name: "Hypeboard", href: "/hypeboard" },
     { name: "Let's Work", href: "/lets-work" },
 ];
@@ -18,6 +19,15 @@ const navLinks = [
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { theme } = useTheme();
+
+    // Prevent scrolling when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [isMobileMenuOpen]);
 
     // Determine logo class based on theme
     // Assumption: Source image is WHITE (based on "looks white in website")
@@ -89,26 +99,33 @@ export default function Navbar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[60] bg-[var(--background)]/95 backdrop-blur-xl flex flex-col justify-center items-center"
+                        className="fixed inset-0 z-[60] bg-[var(--background)] flex flex-col justify-center items-center overflow-hidden"
                     >
+                        {/* Background Watermark */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
+                            <span className="font-anton text-[150vh] leading-none whitespace-nowrap text-[var(--foreground)] -rotate-90 origin-center">
+                                VINTVATE
+                            </span>
+                        </div>
+
                         <button
-                            className="absolute top-6 right-6 text-[var(--foreground)] p-2"
+                            className="absolute top-6 right-6 text-[var(--foreground)] p-2 z-50"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             <X size={32} />
                         </button>
 
-                        <div className="flex flex-col gap-8 text-center">
+                        <div className="flex flex-col gap-6 text-center z-10 w-full px-6">
                             {navLinks.map((link, index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ y: 20, opacity: 0 }}
+                                    initial={{ y: 40, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
-                                    transition={{ delay: 0.1 + index * 0.1 }}
+                                    transition={{ delay: 0.1 + index * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                                 >
                                     <Link
                                         href={link.href}
-                                        className="font-anton text-4xl uppercase tracking-wide text-[var(--foreground)] hover:text-[var(--muted-foreground)] transition-colors"
+                                        className="font-anton text-5xl md:text-6xl uppercase tracking-tighter text-[var(--foreground)] hover:text-[var(--muted-foreground)] transition-colors block"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         {link.name}
@@ -116,6 +133,22 @@ export default function Navbar() {
                                 </motion.div>
                             ))}
                         </div>
+
+                        {/* Mobile Menu Footer */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="absolute bottom-10 left-0 w-full text-center z-10"
+                        >
+                            <a href="mailto:hello@vintvate.com" className="font-inter text-sm uppercase tracking-widest text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors block mb-4">
+                                hello@vintvate.com
+                            </a>
+                            <div className="flex justify-center gap-6 text-[var(--muted-foreground)]">
+                                <a href="#" className="uppercase text-xs tracking-widest hover:text-[var(--foreground)]">Instagram</a>
+                                <a href="#" className="uppercase text-xs tracking-widest hover:text-[var(--foreground)]">Twitter</a>
+                            </div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

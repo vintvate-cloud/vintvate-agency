@@ -1,17 +1,64 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ShaderAnimation } from "./shader-animation";
 
 export default function Footer() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const textRef = useRef<HTMLHeadingElement>(null);
+    const ctaRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        const ctx = gsap.context(() => {
+            // Parallax Text Effect
+            gsap.fromTo(textRef.current,
+                { y: 100 },
+                {
+                    y: -100,
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                    }
+                }
+            );
+
+            // CTA Reveal
+            gsap.from(ctaRef.current?.children || [], {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: ctaRef.current,
+                    start: "top 80%",
+                }
+            });
+
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <footer className="relative w-full bg-[#050505] text-[#F4F4F4] pt-20 pb-6 px-6 md:px-12 overflow-hidden flex flex-col justify-between min-h-screen md:min-h-[80vh]">
+        <footer ref={containerRef} className="relative w-full bg-[#050505] text-[#F4F4F4] pt-20 pb-6 px-6 md:px-12 overflow-hidden flex flex-col justify-between min-h-screen">
+
+            {/* Background Shader */}
+            <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+                <ShaderAnimation />
+            </div>
 
             {/* Top Section: Links and Call to Action */}
             <div className="flex flex-col md:flex-row justify-between items-start w-full z-10 gap-10 md:gap-0">
 
                 {/* CTA */}
-                <div className="flex flex-col gap-4 max-w-lg">
+                <div ref={ctaRef} className="flex flex-col gap-4 max-w-lg">
                     <h3 className="font-anton text-4xl md:text-6xl uppercase leading-tight">
                         Let's start<br />something new.
                     </h3>
@@ -24,33 +71,29 @@ export default function Footer() {
                 <div className="flex gap-12 md:gap-24 font-inter text-xs md:text-sm uppercase tracking-widest text-white/60">
                     <div className="flex flex-col gap-4">
                         <span className="text-white font-bold opacity-100 mb-2">Socials</span>
-                        <Link href="#" className="hover:text-white transition-colors">Instagram</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Twitter</Link>
-                        <Link href="#" className="hover:text-white transition-colors">LinkedIn</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Awwwards</Link>
+                        <Link href="https://instagram.com" target="_blank" className="hover:text-white transition-colors">Instagram</Link>
+                        <Link href="https://twitter.com" target="_blank" className="hover:text-white transition-colors">Twitter</Link>
+                        <Link href="https://linkedin.com" target="_blank" className="hover:text-white transition-colors">LinkedIn</Link>
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold opacity-100 mb-2">Sitemap</span>
-                        <Link href="#" className="hover:text-white transition-colors">Home</Link>
-                        <Link href="#" className="hover:text-white transition-colors">About</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Works</Link>
-                        <Link href="#" className="hover:text-white transition-colors">Contact</Link>
+                        <span className="text-white font-bold opacity-100 mb-2">Directory</span>
+                        <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                        <Link href="/about" className="hover:text-white transition-colors">About</Link>
+                        <Link href="/works" className="hover:text-white transition-colors">Works</Link>
+                        <Link href="/sitemap" className="hover:text-[var(--primary)] transition-colors text-white font-bold">System Index</Link>
                     </div>
                 </div>
             </div>
 
             {/* Bottom Section: Massive Text */}
             <div className="w-full mt-auto relative z-10 pt-20 md:pt-0">
-                <motion.h1
-                    initial={{ y: "100%" }}
-                    whileInView={{ y: 0 }}
-                    transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
-                    viewport={{ once: false, margin: "-10%" }}
-                    className="font-anton text-[18vw] leading-[0.75] text-center md:text-justify w-full uppercase tracking-tighter mix-blend-difference opacity-90 select-none pb-0 mb-0 -ml-[1vw]"
+                <h1
+                    ref={textRef}
+                    className="font-anton text-[26vw] md:text-[18vw] leading-[0.75] text-center md:text-justify w-full uppercase tracking-tighter mix-blend-difference opacity-90 select-none pb-0 mb-0 -ml-[1vw]"
                 >
                     VINTVATE
-                </motion.h1>
+                </h1>
             </div>
 
             {/* Copyright / Extra Info */}

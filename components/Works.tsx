@@ -40,24 +40,24 @@ export default function Works() {
         target: targetRef,
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
 
     return (
-        <section ref={targetRef} className="relative h-[300vh] bg-[#F4F4F4]">
+        <section id="works" ref={targetRef} className="relative h-[200vh] md:h-[300vh] bg-[#F4F4F4] dark:bg-black transition-colors duration-500">
             <div className="sticky top-0 flex h-screen items-center overflow-hidden">
 
                 {/* Section Title */}
-                <div className="absolute top-10 left-6 md:left-12 z-20">
-                    <h2 className="font-anton text-4xl md:text-6xl uppercase tracking-wide text-black">
-                        Selected<br /><span className="text-gray-400">Works</span>
+                <div className="absolute top-24 left-6 md:left-12 z-20 pointer-events-none">
+                    <h2 className="font-anton text-4xl md:text-6xl uppercase tracking-wide text-black dark:text-white">
+                        Selected<br /><span className="text-gray-400 dark:text-gray-600">Works</span>
                     </h2>
                 </div>
 
-                <motion.div style={{ x }} className="flex gap-10 md:gap-20 pl-6 md:pl-[30vw]">
+                <motion.div style={{ x }} className="flex gap-6 md:gap-20 pl-6 md:pl-[30vw]">
                     {projects.map((project) => (
-                        <div key={project.id} className="group relative w-[80vw] md:w-[45vw] h-[50vh] md:h-[60vh] flex-shrink-0 cursor-pointer overflow-hidden rounded-lg">
+                        <div key={project.id} className="group relative w-[85vw] md:w-[45vw] h-[55vh] md:h-[60vh] flex-shrink-0 cursor-pointer overflow-hidden rounded-lg">
                             {/* Image Background */}
-                            <div className="absolute inset-0 w-full h-full bg-gray-200">
+                            <div className="absolute inset-0 w-full h-full bg-gray-200 dark:bg-gray-900">
                                 <img
                                     src={project.image}
                                     alt={project.title}
@@ -79,13 +79,13 @@ export default function Works() {
                     ))}
 
                     {/* "More" / CTA Card */}
-                    <div className="w-[80vw] md:w-[30vw] h-[50vh] md:h-[60vh] flex-shrink-0 flex items-center justify-center border-2 border-black/10 rounded-lg">
-                        <div className="text-center group cursor-pointer">
-                            <div className="w-20 h-20 md:w-32 md:h-32 rounded-full border border-black flex items-center justify-center mb-4 transition-colors group-hover:bg-black group-hover:text-white">
+                    <div className="w-[85vw] md:w-[30vw] h-[55vh] md:h-[60vh] flex-shrink-0 flex items-center justify-center border-2 border-black/10 dark:border-white/10 rounded-lg">
+                        <a href="/works" className="text-center group cursor-pointer block w-full h-full flex flex-col items-center justify-center">
+                            <div className="w-20 h-20 md:w-32 md:h-32 rounded-full border border-black dark:border-white flex items-center justify-center mb-4 transition-colors group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black">
                                 <span className="font-inter text-4xl md:text-6xl font-light">→</span>
                             </div>
-                            <p className="font-anton text-xl uppercase tracking-wide">View All Projects</p>
-                        </div>
+                            <p className="font-anton text-xl uppercase tracking-wide text-black dark:text-white">View All Projects</p>
+                        </a>
                     </div>
                 </motion.div>
             </div>

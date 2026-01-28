@@ -49,12 +49,14 @@ export default function Blueprint() {
                 {steps.map((step, index) => (
                     <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 1, y: 0 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className={`sticky top-[${10 + index * 4}rem] flex flex-col md:flex-row gap-8 md:gap-20 p-8 md:p-12 border border-[var(--foreground)] rounded-sm ${step.color} backdrop-blur-sm`}
-                        style={{ top: `${8 + index * 3}rem` }}
+                        className={`sticky top-[var(--top-mobile)] md:top-[var(--top-desktop)] flex flex-col md:flex-row gap-8 md:gap-20 p-6 md:p-12 border border-[var(--foreground)] rounded-sm ${step.color}`}
+                        style={{
+                            "--top-mobile": `${4 + index * 3}rem`,
+                            "--top-desktop": `${8 + index * 3}rem`
+                        } as React.CSSProperties}
                     >
                         <div className="md:w-1/4">
                             <div className="font-anton text-6xl md:text-9xl opacity-20 leading-none">
