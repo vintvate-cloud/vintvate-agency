@@ -2,37 +2,10 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-const projects = [
-    {
-        id: 1,
-        title: "ELEVATE APP",
-        category: "Mobile Design / UX",
-        color: "bg-blue-100",
-        image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop"
-    },
-    {
-        id: 2,
-        title: "NECTAR DASHBOARD",
-        category: "Web Development",
-        color: "bg-purple-100",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
-    },
-    {
-        id: 3,
-        title: "AURA BRANDING",
-        category: "Identity",
-        color: "bg-pink-100",
-        image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop"
-    },
-    {
-        id: 4,
-        title: "ZENITH COMMERCE",
-        category: "E-Commerce",
-        color: "bg-orange-100",
-        image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2000&auto=format&fit=crop"
-    }
-];
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { projects } from "@/lib/data";
 
 export default function Works() {
     const targetRef = useRef<HTMLDivElement>(null);
@@ -40,53 +13,60 @@ export default function Works() {
         target: targetRef,
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
     return (
-        <section id="works" ref={targetRef} className="relative h-[200vh] md:h-[300vh] bg-[#F4F4F4] dark:bg-black transition-colors duration-500">
+        <section ref={targetRef} className="relative h-[300vh] bg-[var(--background)]">
             <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+                <motion.div style={{ x }} className="flex gap-4 p-4 md:p-12">
 
-                {/* Section Title */}
-                <div className="absolute top-24 left-6 md:left-12 z-20 pointer-events-none">
-                    <h2 className="font-anton text-4xl md:text-6xl uppercase tracking-wide text-black dark:text-white">
-                        Selected<br /><span className="text-gray-400 dark:text-gray-600">Works</span>
-                    </h2>
-                </div>
+                    {/* Intro Card */}
+                    <div className="relative h-[60vh] w-[90vw] md:w-[40vw] flex-shrink-0 flex flex-col justify-center p-8">
+                        <h2 className="font-anton text-[12vw] md:text-[8vw] leading-[0.85] text-[var(--foreground)] uppercase mb-6">
+                            Selected<br />Works <span className="text-[var(--primary)]">.</span>
+                        </h2>
+                        <p className="font-inter text-[var(--muted-foreground)] max-w-md text-sm md:text-base">
+                            A showcase of our defining projects. Digital experiences that push boundaries.
+                        </p>
+                    </div>
 
-                <motion.div style={{ x }} className="flex gap-6 md:gap-20 pl-6 md:pl-[30vw]">
+                    {/* Project Cards */}
                     {projects.map((project) => (
-                        <div key={project.id} className="group relative w-[85vw] md:w-[45vw] h-[55vh] md:h-[60vh] flex-shrink-0 cursor-pointer overflow-hidden rounded-lg">
-                            {/* Image Background */}
-                            <div className="absolute inset-0 w-full h-full bg-gray-200 dark:bg-gray-900">
-                                <img
-                                    src={project.image}
+                        <Link href={`/works/${project.id}`} key={project.id} className="group relative h-[60vh] w-[90vw] md:w-[50vw] flex-shrink-0 overflow-hidden rounded-xl bg-[var(--card)] border border-[var(--border)] cursor-none md:cursor-pointer">
+                            <div className="absolute inset-0 z-0">
+                                <Image
+                                    src={project.heroImage}
                                     alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 hover:opacity-100"
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
                             </div>
 
-                            {/* Content */}
-                            <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 flex flex-col justify-end items-start transform translate-y-4 md:translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                                <span className="font-inter text-xs md:text-sm font-bold uppercase tracking-widest text-white/80 mb-2">
-                                    {project.category}
-                                </span>
-                                <h3 className="font-anton text-3xl md:text-5xl uppercase tracking-wide text-white">
-                                    {project.title}
-                                </h3>
+                            <div className="absolute bottom-0 left-0 w-full p-8 z-10 flex flex-col items-start transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                <div className="bg-white/10 backdrop-blur-md px-4 py-1 rounded-full border border-white/20 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white">{project.client}</span>
+                                </div>
+                                <h3 className="font-anton text-5xl md:text-7xl text-white uppercase mb-2">{project.title}</h3>
+                                <p className="font-inter text-sm md:text-base text-white/80 line-clamp-2 max-w-lg">{project.description}</p>
                             </div>
-                        </div>
+
+                            <div className="absolute top-8 right-8 z-20 bg-white text-black p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 hover:scale-110">
+                                <ArrowUpRight className="w-6 h-6" />
+                            </div>
+                        </Link>
                     ))}
 
-                    {/* "More" / CTA Card */}
-                    <div className="w-[85vw] md:w-[30vw] h-[55vh] md:h-[60vh] flex-shrink-0 flex items-center justify-center border-2 border-black/10 dark:border-white/10 rounded-lg">
-                        <a href="/works" className="text-center group cursor-pointer block w-full h-full flex flex-col items-center justify-center">
-                            <div className="w-20 h-20 md:w-32 md:h-32 rounded-full border border-black dark:border-white flex items-center justify-center mb-4 transition-colors group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black">
-                                <span className="font-inter text-4xl md:text-6xl font-light">→</span>
+                    {/* View All Link Card */}
+                    <div className="relative h-[60vh] w-[90vw] md:w-[30vw] flex-shrink-0 flex items-center justify-center border border-[var(--border)] rounded-xl hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors duration-500 group">
+                        <Link href="/works" className="w-full h-full flex flex-col items-center justify-center">
+                            <div className="w-20 h-20 rounded-full border border-[var(--foreground)] group-hover:border-[var(--background)] flex items-center justify-center mb-4">
+                                <ArrowUpRight className="w-8 h-8" />
                             </div>
-                            <p className="font-anton text-xl uppercase tracking-wide text-black dark:text-white">View All Projects</p>
-                        </a>
+                            <span className="font-anton uppercase text-2xl">View All</span>
+                        </Link>
                     </div>
+
                 </motion.div>
             </div>
         </section>

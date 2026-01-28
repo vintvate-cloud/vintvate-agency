@@ -5,6 +5,7 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShaderAnimation } from "./shader-animation";
+import Newsletter from "./Newsletter";
 
 export default function Footer() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -68,7 +69,13 @@ export default function Footer() {
                 </div>
 
                 {/* Navigation Links */}
-                <div className="flex gap-12 md:gap-24 font-inter text-xs md:text-sm uppercase tracking-widest text-white/60">
+                <div className="flex flex-col md:flex-row gap-12 md:gap-20 font-inter text-xs md:text-sm uppercase tracking-widest text-white/60">
+
+                    {/* Newsletter - Mobile: Top, Desktop: Left within group */}
+                    <div className="flex flex-col gap-4 max-w-xs">
+                        <Newsletter />
+                    </div>
+
                     <div className="flex flex-col gap-4">
                         <span className="text-white font-bold opacity-100 mb-2">Socials</span>
                         <Link href="https://instagram.com" target="_blank" className="hover:text-white transition-colors">Instagram</Link>
