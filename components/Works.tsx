@@ -5,9 +5,17 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/lib/data";
 
-export default function Works() {
+interface Project {
+    id: string;
+    title: string;
+    description: string;
+    image: string | null;
+    link: string | null;
+    tags: string | null;
+}
+
+export default function Works({ projects }: { projects: Project[] }) {
     const targetRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: targetRef,
@@ -35,7 +43,7 @@ export default function Works() {
                         <Link href={`/works/${project.id}`} key={project.id} className="group relative h-[60vh] w-[90vw] md:w-[50vw] flex-shrink-0 overflow-hidden rounded-xl bg-[var(--card)] border border-[var(--border)] cursor-none md:cursor-pointer">
                             <div className="absolute inset-0 z-0">
                                 <Image
-                                    src={project.heroImage}
+                                    src={project.image || "/placeholder-project.jpg"}
                                     alt={project.title}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 hover:opacity-100"
@@ -44,9 +52,11 @@ export default function Works() {
                             </div>
 
                             <div className="absolute bottom-0 left-0 w-full p-8 z-10 flex flex-col items-start transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                {/* Optional: Display Client or Tag if you add it to DB model properly
                                 <div className="bg-white/10 backdrop-blur-md px-4 py-1 rounded-full border border-white/20 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white">{project.client}</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white">{project.tags || "Project"}</span>
                                 </div>
+                                */}
                                 <h3 className="font-anton text-5xl md:text-7xl text-white uppercase mb-2">{project.title}</h3>
                                 <p className="font-inter text-sm md:text-base text-white/80 line-clamp-2 max-w-lg">{project.description}</p>
                             </div>

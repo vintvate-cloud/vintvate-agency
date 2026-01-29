@@ -51,13 +51,13 @@ export default function CreateTeamPage() {
 
                 <div>
                     <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">
-                        Photo URL
+                        Photo
                     </label>
                     <input
-                        type="url"
+                        type="file"
                         name="image"
-                        className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors"
-                        placeholder="https://example.com/photo.jpg"
+                        accept="image/*"
+                        className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[var(--foreground)] file:text-[var(--background)] hover:file:opacity-90 cursor-pointer"
                     />
                 </div>
 

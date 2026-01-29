@@ -1,12 +1,17 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/lib/data";
+import { prisma } from "@/lib/prisma";
 
-export default function WorksPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function WorksPage() {
+    const projects = await prisma.project.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        }
+    });
+
     return (
         <main className="w-full min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-32 px-6 md:px-12 pb-20">
             <h1 className="font-anton text-6xl md:text-9xl uppercase mb-20">
@@ -18,7 +23,7 @@ export default function WorksPage() {
                     <Link href={`/works/${project.id}`} key={project.id} className="group block">
                         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg mb-6 border border-[var(--border)]">
                             <Image
-                                src={project.heroImage}
+                                src={project.image || "/placeholder-project.jpg"}
                                 alt={project.title}
                                 fill
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -33,15 +38,15 @@ export default function WorksPage() {
                         <div className="space-y-2">
                             <div className="flex justify-between items-start">
                                 <h2 className="font-anton text-3xl md:text-4xl uppercase">{project.title}</h2>
-                                <span className="font-inter text-xs uppercase tracking-widest opacity-60 mt-2">{project.timeline}</span>
+                                <span className="font-inter text-xs uppercase tracking-widest opacity-60 mt-2">2024</span>
                             </div>
                             <p className="font-inter text-sm md:text-base opacity-70 line-clamp-2 max-w-md">
                                 {project.description}
                             </p>
                             <div className="flex flex-wrap gap-2 mt-4">
-                                {project.services.slice(0, 3).map((s, i) => (
+                                {project.tags && project.tags.split(',').slice(0, 3).map((s, i) => (
                                     <span key={i} className="text-[10px] font-bold font-inter uppercase tracking-widest border border-[var(--foreground)]/20 px-2 py-1 rounded-full opacity-60">
-                                        {s}
+                                        {s.trim()}
                                     </span>
                                 ))}
                             </div>

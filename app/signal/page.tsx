@@ -1,55 +1,45 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import FlowingMenu from "@/components/FlowingMenu";
 
 const articles = [
     {
-        id: 1,
-        date: "APR 12, 2025",
-        title: "WHY WE KILLED THE NAVBAR",
-        tag: "UX Design",
-        slug: "#"
+        link: "#",
+        text: "WHY WE KILLED THE NAVBAR",
+        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2670&auto=format&fit=crop"
     },
     {
-        id: 2,
-        date: "MAR 08, 2025",
-        title: "SPEED IS A FEATURE",
-        tag: "Engineering",
-        slug: "#"
+        link: "#",
+        text: "SPEED IS A FEATURE",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2670&auto=format&fit=crop"
     },
     {
-        id: 3,
-        date: "FEB 21, 2025",
-        title: "THE DEATH OF FLAT DESIGN",
-        tag: "Trends",
-        slug: "#"
+        link: "#",
+        text: "THE DEATH OF FLAT DESIGN",
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
     },
     {
-        id: 4,
-        date: "JAN 15, 2025",
-        title: "CLIENTS DON'T BUY CODE",
-        tag: "Strategy",
-        slug: "#"
+        link: "#",
+        text: "CLIENTS DON'T BUY CODE",
+        image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop"
     },
     {
-        id: 5,
-        date: "DEC 10, 2024",
-        title: "BUILDING DIGITAL WAR MACHINES",
-        tag: "Philosophy",
-        slug: "#"
+        link: "#",
+        text: "BUILDING DIGITAL WAR MACHINES",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2670&auto=format&fit=crop"
     }
 ];
 
 export default function SignalPage() {
     return (
-        <main className="w-full min-h-screen bg-[var(--background)] pt-32 pb-20 px-6 md:px-12">
+        <main className="w-full min-h-screen bg-[var(--background)] pt-32 pb-20 px-6 md:px-12 flex flex-col">
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="max-w-screen-2xl mx-auto mb-20"
+                className="max-w-screen-2xl mx-auto mb-10 w-full"
             >
                 <div className="flex flex-col gap-1">
                     <p className="font-anton text-sm uppercase tracking-widest text-[var(--muted-foreground)]">
@@ -61,32 +51,16 @@ export default function SignalPage() {
                 </div>
             </motion.div>
 
-            <div className="max-w-screen-2xl mx-auto flex flex-col">
-                {articles.map((article, index) => (
-                    <motion.div
-                        key={article.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        className="group relative border-t border-[var(--border)] py-12 md:py-16 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors duration-300 cursor-pointer"
-                    >
-                        <Link href={article.slug} className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 md:gap-10 px-4">
-                            <span className="font-inter text-xs md:text-sm font-bold uppercase tracking-widest opacity-60 group-hover:opacity-100">
-                                {article.date}
-                            </span>
-
-                            <h2 className="font-anton text-4xl md:text-7xl uppercase leading-none group-hover:translate-x-4 transition-transform duration-500">
-                                {article.title}
-                            </h2>
-
-                            <span className="font-inter text-xs md:text-sm font-bold uppercase tracking-widest border border-[var(--border)] px-3 py-1 rounded-full group-hover:border-[var(--background)] md:self-start">
-                                {article.tag}
-                            </span>
-                        </Link>
-                    </motion.div>
-                ))}
-                <div className="w-full h-[1px] bg-[var(--border)]"></div>
+            <div className="w-full h-[85vh] relative border-t border-b border-[var(--border)]">
+                <FlowingMenu
+                    items={articles}
+                    speed={20}
+                    textColor="var(--foreground)"
+                    bgColor="transparent"
+                    marqueeBgColor="var(--foreground)"
+                    marqueeTextColor="var(--background)"
+                    borderColor="var(--border)"
+                />
             </div>
 
         </main>

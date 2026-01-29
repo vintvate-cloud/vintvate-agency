@@ -3,25 +3,29 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const teamSync = [
+interface TeamMember {
+    id: string;
+    name: string;
+    role: string;
+    image: string | null; // Database might return null
+    bio: string | null;
+}
 
+export default function TeamGrid({ members }: { members: TeamMember[] }) {
+    if (!members || members.length === 0) {
+        return (
+            <section className="w-full py-20 px-6 md:px-12 text-center">
+                <p className="font-inter text-[var(--muted-foreground)]">No team members found.</p>
+            </section>
+        );
+    }
 
-    {
-        name: "Vedant Vyas",
-        role: "Founder",
-        image: "/vedant.jpg",
-        bio: "The vision behind Vintvate. Creating digital legacies."
-    },
-
-];
-
-export default function TeamGrid() {
     return (
         <section className="w-full py-20 px-6 md:px-12">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-screen-2xl mx-auto">
-                {teamSync.map((member, index) => (
+                {members.map((member, index) => (
                     <motion.div
-                        key={index}
+                        key={member.id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -29,8 +33,9 @@ export default function TeamGrid() {
                         className="group relative"
                     >
                         <div className="w-full aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500 mb-6 bg-gray-200">
+                            {/* Fallback image if null */}
                             <Image
-                                src={member.image}
+                                src={member.image || "/placeholder-person.jpg"}
                                 alt={member.name}
                                 width={600}
                                 height={800}
