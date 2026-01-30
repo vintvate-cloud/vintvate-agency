@@ -8,7 +8,7 @@ export default function LetsWorkPage() {
         <main className="w-full min-h-screen bg-[var(--background)] pt-32 pb-20 px-6 md:px-12 flex flex-col md:flex-row gap-12 md:gap-24">
 
             {/* Left Column: Info & Statement */}
-            <div className="w-full md:w-1/3 flex flex-col justify-between h-full sticky top-32">
+            <div className="w-full md:w-1/3 flex flex-col justify-between h-full md:sticky top-32">
                 <div>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}

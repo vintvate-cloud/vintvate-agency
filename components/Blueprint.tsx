@@ -35,13 +35,13 @@ const steps = [
 
 export default function Blueprint() {
     return (
-        <section className="w-full py-24 md:py-48 px-6 md:px-12 bg-[var(--background)] relative z-20">
+        <section className="w-full py-20 md:py-32 px-6 md:px-12 bg-[var(--background)] relative z-20">
             <div className="max-w-screen-2xl mx-auto mb-20">
-                <p className="font-anton text-sm uppercase tracking-widest text-[var(--muted)] mb-4">
+                <p className="font-anton text-sm uppercase tracking-widest text-[var(--muted-foreground)] mb-4">
                     The Blueprint
                 </p>
                 <h2 className="font-anton text-4xl md:text-7xl uppercase text-[var(--foreground)]">
-                    How We<br /><span className="text-[var(--muted)]">Take Over.</span>
+                    How We<br /><span className="text-[var(--muted-foreground)]">Take Over.</span>
                 </h2>
             </div>
 

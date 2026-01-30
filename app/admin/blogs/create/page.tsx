@@ -51,16 +51,17 @@ export default function CreateBlogPage() {
 
                 <div>
                     <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">
-                        Image URL
+                        Cover Image
                     </label>
                     <input
-                        type="url"
+                        type="file"
                         name="image"
-                        className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors"
-                        placeholder="https://example.com/image.jpg"
+                        accept="image/*"
+                        className="w-full bg-[var(--card)] border border-[var(--border)] p-3 font-inter text-xs text-[var(--foreground)] file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:font-semibold file:bg-[var(--foreground)] file:text-[var(--background)] hover:file:opacity-80 transition-all"
+                        placeholder="Upload Image"
                     />
                     <p className="font-inter text-[10px] text-[var(--muted-foreground)] mt-2">
-                        Provide a direct link to a hosted image
+                        Upload a cover image (Max 5MB)
                     </p>
                 </div>
 

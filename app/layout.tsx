@@ -16,6 +16,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Vintvate Agency",
   description: "Unapologetically Bold",
+  icons: {
+    icon: "/vintvatelogo-removebg-preview.png",
+  },
 };
 
 import SmoothScroll from "@/components/SmoothScroll";

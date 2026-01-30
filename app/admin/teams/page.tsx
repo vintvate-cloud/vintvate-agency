@@ -61,6 +61,12 @@ export default async function TeamsPage() {
                                     </p>
                                 )}
                                 <div className="flex gap-4 mt-6 pt-4 border-t border-[var(--border)]">
+                                    <Link
+                                        href={`/admin/teams/${member.id}`}
+                                        className="flex-1 py-2 font-inter text-xs uppercase tracking-widest text-[var(--foreground)] hover:opacity-70 transition-opacity text-center"
+                                    >
+                                        Edit
+                                    </Link>
                                     <form action={deleteTeamMember.bind(null, member.id)} className="flex-1">
                                         <button
                                             className="w-full py-2 font-inter text-xs uppercase tracking-widest text-red-500 hover:text-red-400 transition-colors cursor-pointer"

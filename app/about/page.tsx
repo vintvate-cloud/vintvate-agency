@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const textVariants = {
     hidden: { y: "100%", opacity: 0 },
     visible: (i: number) => ({
         y: "0%",
         opacity: 1,
-        transition: { duration: 0.5, delay: i * 0.05, ease: [0.33, 1, 0.68, 1] as any },
+        transition: { duration: 0.5, delay: i * 0.05, ease: [0.33, 1, 0.68, 1] as [number, number, number, number] },
     }),
 };
 
@@ -23,16 +24,30 @@ export default function AboutPage() {
 
 
             {/* Header */}
-            <div className="w-full mb-16 md:mb-24 overflow-hidden relative z-10">
+            <div className="w-full mb-16 md:mb-24 relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
                 <motion.h1
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
-                    transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] as any }}
+                    transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] as [number, number, number, number] }}
                     className="font-anton text-[12vw] leading-[0.8] uppercase tracking-tighter text-[var(--foreground)] mix-blend-multiply dark:mix-blend-normal"
                 >
-                    HEY, WE ARE<br />
-                    <span className="text-[var(--muted)]">VINTVATE</span>.
+                    HEY WE ARE<br />
+                    <span className="text-[var(--muted-foreground)]">VINTVATE</span>
                 </motion.h1>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="relative w-full md:w-[400px] h-[400px] md:h-[400px] overflow-hidden rounded-lg mb-4 md:mb-8"
+                >
+                    <Image
+                        src="/original-a9e2537e2c6e5fbb3af349f106fd7e24.webp"
+                        alt="Vintvate Culture"
+                        fill
+                        className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    />
+                </motion.div>
             </div>
 
             {/* Content Body */}
@@ -76,7 +91,7 @@ export default function AboutPage() {
                     className="font-anton text-4xl md:text-7xl uppercase leading-tight text-[var(--foreground)]"
                 >
                     We don't just build websites.<br />
-                    <span className="text-[var(--muted)]">We build digital dominance.</span>
+                    <span className="text-[var(--muted-foreground)]">We build digital dominance.</span>
                 </motion.h2>
             </div>
 
@@ -130,7 +145,7 @@ export default function AboutPage() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="font-inter text-sm text-[var(--muted)] uppercase tracking-widest mt-4"
+                    className="font-inter text-sm text-[var(--muted-foreground)] uppercase tracking-widest mt-4"
                 >
                     <a href="#" className="border-b border-[var(--border)] hover:border-[var(--foreground)] transition-colors">For more info please visit here</a>
                 </motion.div>

@@ -4,7 +4,6 @@ import Testimonials from "@/components/Testimonials";
 import Blueprint from "@/components/Blueprint";
 import Works from "@/components/Works";
 import Marquee from "@/components/Marquee";
-import TechStack from "@/components/TechStack";
 import PricingPlan from "@/components/PricingPlan";
 import { prisma } from "@/lib/prisma";
 
@@ -25,7 +24,6 @@ export default async function Home() {
       <Testimonials />
       <Blueprint />
       <Works projects={projects} />
-      <TechStack />
       <PricingPlan />
     </main>
   );

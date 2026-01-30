@@ -47,7 +47,7 @@ export default function ContactForm() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2"
             >
-                <label className="font-anton text-sm uppercase tracking-widest text-[var(--muted)]">01. What's your name?</label>
+                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">01. What's your name?</label>
                 <input
                     name="name"
                     type="text"
@@ -66,7 +66,7 @@ export default function ContactForm() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2"
             >
-                <label className="font-anton text-sm uppercase tracking-widest text-[var(--muted)]">02. What's your email?</label>
+                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">02. What's your email?</label>
                 <input
                     name="email"
                     type="email"
@@ -85,7 +85,7 @@ export default function ContactForm() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2"
             >
-                <label className="font-anton text-sm uppercase tracking-widest text-[var(--muted)]">03. What can we help you with?</label>
+                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">03. What can we help you with?</label>
                 <input
                     name="service"
                     type="text"
@@ -104,7 +104,7 @@ export default function ContactForm() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2"
             >
-                <label className="font-anton text-sm uppercase tracking-widest text-[var(--muted)]">04. What's your budget?</label>
+                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">04. What's your budget?</label>
                 <input
                     name="budget"
                     type="text"

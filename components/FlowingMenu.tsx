@@ -1,4 +1,6 @@
+"use client";
 import React, { useRef, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 
 import './FlowingMenu.css';
@@ -162,7 +164,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
 
     return (
         <div className="menu__item" ref={itemRef} style={{ borderColor, borderTop: isFirst ? 'none' : undefined }}>
-            <a
+            <Link
                 className="menu__item-link"
                 href={link}
                 onMouseEnter={handleMouseEnter}
@@ -170,7 +172,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
                 style={{ color: textColor }}
             >
                 {text}
-            </a>
+            </Link>
             <div className="marquee" ref={marqueeRef} style={{ backgroundColor: marqueeBgColor }}>
                 <div className="marquee__inner-wrap">
                     <div className="marquee__inner" ref={marqueeInnerRef} aria-hidden="true">

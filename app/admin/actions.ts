@@ -20,7 +20,17 @@ export async function createBlog(formData: FormData) {
     const excerpt = formData.get('excerpt') as string
     const content = formData.get('content') as string
     const author = formData.get('author') as string
-    const image = formData.get('image') as string
+    const imageFile = formData.get('image') as File
+
+    let imagePath = null;
+
+    if (imageFile && imageFile.size > 0) {
+        const bytes = await imageFile.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+
+        const { uploadToCloudinary } = await import('@/lib/cloudinary')
+        imagePath = await uploadToCloudinary(buffer, 'vintvate_blogs')
+    }
 
     let slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
     const existing = await prisma.blog.findUnique({ where: { slug } })
@@ -35,7 +45,7 @@ export async function createBlog(formData: FormData) {
             excerpt,
             content,
             author,
-            image: image || null
+            image: imagePath
         }
     })
 
@@ -57,23 +67,8 @@ export async function createTeamMember(formData: FormData) {
         const bytes = await imageFile.arrayBuffer()
         const buffer = Buffer.from(bytes)
 
-        // Dynamic imports to prevent Client Bundle errors
-        const { promises: fs } = await import('fs')
-        const path = (await import('path')).default
-
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-
-        try {
-            await fs.access(uploadDir)
-        } catch {
-            await fs.mkdir(uploadDir, { recursive: true })
-        }
-
-        const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '')}`
-        const filepath = path.join(uploadDir, filename)
-
-        await fs.writeFile(filepath, buffer)
-        imagePath = `/uploads/${filename}`
+        const { uploadToCloudinary } = await import('@/lib/cloudinary')
+        imagePath = await uploadToCloudinary(buffer, 'vintvate_team')
     }
 
     await prisma.team.create({
@@ -82,6 +77,38 @@ export async function createTeamMember(formData: FormData) {
             role,
             bio,
             image: imagePath
+        }
+    })
+
+    revalidatePath('/admin/teams')
+    redirect('/admin/teams')
+}
+
+export async function updateTeamMember(id: string, formData: FormData) {
+    await checkAdmin()
+
+    const name = formData.get('name') as string
+    const role = formData.get('role') as string
+    const bio = formData.get('bio') as string
+    const imageFile = formData.get('image') as File
+
+    let imagePath = undefined;
+
+    if (imageFile && imageFile.size > 0) {
+        const bytes = await imageFile.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+
+        const { uploadToCloudinary } = await import('@/lib/cloudinary')
+        imagePath = await uploadToCloudinary(buffer, 'vintvate_team')
+    }
+
+    await prisma.team.update({
+        where: { id },
+        data: {
+            name,
+            role,
+            bio,
+            ...(imagePath && { image: imagePath })
         }
     })
 
@@ -104,23 +131,8 @@ export async function createProject(formData: FormData) {
         const bytes = await imageFile.arrayBuffer()
         const buffer = Buffer.from(bytes)
 
-        // Dynamic imports to prevent Client Bundle errors
-        const { promises: fs } = await import('fs')
-        const path = (await import('path')).default
-
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-
-        try {
-            await fs.access(uploadDir)
-        } catch {
-            await fs.mkdir(uploadDir, { recursive: true })
-        }
-
-        const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '')}`
-        const filepath = path.join(uploadDir, filename)
-
-        await fs.writeFile(filepath, buffer)
-        imagePath = `/uploads/${filename}`
+        const { uploadToCloudinary } = await import('@/lib/cloudinary')
+        imagePath = await uploadToCloudinary(buffer, 'vintvate_projects')
     }
 
     await prisma.project.create({

@@ -5,7 +5,7 @@ import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShaderAnimation } from "./shader-animation";
-import Newsletter from "./Newsletter";
+
 
 export default function Footer() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -71,10 +71,7 @@ export default function Footer() {
                 {/* Navigation Links */}
                 <div className="flex flex-col md:flex-row gap-12 md:gap-20 font-inter text-xs md:text-sm uppercase tracking-widest text-white/60">
 
-                    {/* Newsletter - Mobile: Top, Desktop: Left within group */}
-                    <div className="flex flex-col gap-4 max-w-xs">
-                        <Newsletter />
-                    </div>
+
 
                     <div className="flex flex-col gap-4">
                         <span className="text-white font-bold opacity-100 mb-2">Socials</span>
@@ -101,6 +98,9 @@ export default function Footer() {
                 >
                     VINTVATE
                 </h1>
+                <span className="hidden md:block absolute right-0 bottom-8 font-mono text-sm tracking-[0.3em] text-[#F4F4F4] [writing-mode:vertical-rl] rotate-180 opacity-60">
+                    #CODEUNLEASHED
+                </span>
             </div>
 
             {/* Copyright / Extra Info */}

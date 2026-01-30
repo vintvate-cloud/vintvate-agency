@@ -119,9 +119,7 @@ export default function About() {
 
       <div className="w-full flex justify-between items-start mt-8 font-inter text-xs md:text-sm uppercase tracking-widest text-white/60">
         <p>Strategy / Design / Development</p>
-        <p className="text-right max-w-xs normal-case tracking-normal">
-          Based in Charlotte, we help brands define their voice in a crowded digital landscape.
-        </p>
+
       </div>
 
     </section>
