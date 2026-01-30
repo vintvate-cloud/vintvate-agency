@@ -16,7 +16,7 @@ export async function POST(request: Request) {
         console.log(`[Newsletter] New subscriber: ${email}`);
 
         return NextResponse.json({ message: "Welcome to the frequency." }, { status: 200 });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }

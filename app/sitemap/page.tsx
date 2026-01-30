@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import GridBackground from "@/components/GridBackground";
 import InteractiveSitemap from "@/components/InteractiveSitemap";
-import PricingPlan from "@/components/PricingPlan";
+
 
 export const metadata: Metadata = {
     title: "System Directory | Vintvate",

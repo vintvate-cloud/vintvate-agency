@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function ContactForm() {
-    const [focusedField, setFocusedField] = useState<string | null>(null);
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
     const inputClasses = "bg-transparent border-0 border-b-[1px] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:ring-0 focus:outline-none focus:border-b-[2px] focus:border-[var(--foreground)] transition-all duration-300 w-full py-2 font-inter text-xl md:text-3xl leading-tight";
@@ -34,7 +33,7 @@ export default function ContactForm() {
             } else {
                 setStatus("error");
             }
-        } catch (error) {
+        } catch {
             setStatus("error");
         }
     }
@@ -47,15 +46,13 @@ export default function ContactForm() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2"
             >
-                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">01. What's your name?</label>
+                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">01. What&apos;s your name?</label>
                 <input
                     name="name"
                     type="text"
                     required
                     placeholder="John Doe"
                     className={inputClasses}
-                    onFocus={() => setFocusedField("name")}
-                    onBlur={() => setFocusedField(null)}
                 />
             </motion.div>
 
@@ -66,15 +63,13 @@ export default function ContactForm() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2"
             >
-                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">02. What's your email?</label>
+                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">02. What&apos;s your email?</label>
                 <input
                     name="email"
                     type="email"
                     required
                     placeholder="john@example.com"
                     className={inputClasses}
-                    onFocus={() => setFocusedField("email")}
-                    onBlur={() => setFocusedField(null)}
                 />
             </motion.div>
 
@@ -92,8 +87,6 @@ export default function ContactForm() {
                     required
                     placeholder="Web Design, Branding, Development..."
                     className={inputClasses}
-                    onFocus={() => setFocusedField("service")}
-                    onBlur={() => setFocusedField(null)}
                 />
             </motion.div>
 
@@ -104,15 +97,13 @@ export default function ContactForm() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2"
             >
-                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">04. What's your budget?</label>
+                <label className="font-anton text-sm uppercase tracking-widest text-[var(--foreground)]">04. What&apos;s your budget?</label>
                 <input
                     name="budget"
                     type="text"
                     required
                     placeholder="2-5k, 5-10k, 10k+"
                     className={inputClasses}
-                    onFocus={() => setFocusedField("budget")}
-                    onBlur={() => setFocusedField(null)}
                 />
             </motion.div>
 
@@ -131,7 +122,7 @@ export default function ContactForm() {
                 </button>
 
                 {status === "success" && (
-                    <p className="font-inter text-green-500 font-bold">Message received. We'll be in touch.</p>
+                    <p className="font-inter text-green-500 font-bold">Message received. We&apos;ll be in touch.</p>
                 )}
                 {status === "error" && (
                     <p className="font-inter text-red-500 font-bold">Something went wrong. Try again.</p>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
@@ -16,13 +17,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem("theme") as Theme;
-        if (savedTheme) {
-            setTheme(savedTheme);
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            setTheme("dark");
-        }
         setMounted(true);
+        const timer = setTimeout(() => {
+            const savedTheme = localStorage.getItem("theme") as Theme;
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                setTheme("dark");
+            }
+        }, 0);
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {

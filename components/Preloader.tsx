@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 export default function Preloader() {
     const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,7 @@ export default function Preloader() {
     }, []);
 
     // Wave Animation Variants
-    const waveVariants = {
+    const waveVariants: Variants = {
         animate: {
             x: ["0%", "-50%"],
             transition: {
@@ -34,19 +34,19 @@ export default function Preloader() {
                     repeat: Infinity,
                     repeatType: "loop",
                     duration: 2, // Speed of the wave ripple
-                    ease: "linear",
+                    ease: "linear" as const,
                 },
             },
         },
     };
 
-    const fillVariants = {
+    const fillVariants: Variants = {
         initial: { y: 25 }, // Start below text
         animate: {
             y: -15, // End fully covering text
             transition: {
                 duration: 3,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
             }
         }
     };

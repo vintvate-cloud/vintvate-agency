@@ -45,7 +45,7 @@ export default function Testimonials() {
                         className="min-w-[85vw] md:min-w-[40vw] lg:min-w-[30vw] snap-center bg-[var(--card)] border border-[var(--border)] p-8 md:p-12 flex flex-col justify-between h-[400px] hover:border-[var(--foreground)] transition-colors group"
                     >
                         <h2 className="font-anton text-3xl md:text-4xl leading-tight uppercase text-[var(--foreground)]">
-                            "{testimonial.quote}"
+                            &quot;{testimonial.quote}&quot;
                         </h2>
 
                         <div className="flex items-center gap-4 mt-8">

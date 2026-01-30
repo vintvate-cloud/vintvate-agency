@@ -90,7 +90,7 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                     className="font-anton text-4xl md:text-7xl uppercase leading-tight text-[var(--foreground)]"
                 >
-                    We don't just build websites.<br />
+                    We don&apos;t just build websites.<br />
                     <span className="text-[var(--muted-foreground)]">We build digital dominance.</span>
                 </motion.h2>
             </div>
@@ -136,7 +136,7 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
                 >
-                    <a href="#" className="inline-block px-8 py-4 bg-[var(--foreground)] text-[var(--background)] font-inter font-bold uppercase tracking-widest text-sm hover:opacity-80 transition-opacity rounded-full">
+                    <a href="/lets-work" className="inline-block px-8 py-4 bg-[var(--foreground)] text-[var(--background)] font-inter font-bold uppercase tracking-widest text-sm hover:opacity-80 transition-opacity rounded-full">
                         Start Project
                     </a>
                 </motion.div>
@@ -147,7 +147,7 @@ export default function AboutPage() {
                     transition={{ delay: 0.3, duration: 0.5 }}
                     className="font-inter text-sm text-[var(--muted-foreground)] uppercase tracking-widest mt-4"
                 >
-                    <a href="#" className="border-b border-[var(--border)] hover:border-[var(--foreground)] transition-colors">For more info please visit here</a>
+                    <a href="/lets-work" className="border-b border-[var(--border)] hover:border-[var(--foreground)] transition-colors">For more info please visit here</a>
                 </motion.div>
             </div>
 

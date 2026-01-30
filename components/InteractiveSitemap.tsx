@@ -48,7 +48,7 @@ export default function InteractiveSitemap() {
                                 {/* Decoding Description */}
                                 <div className="h-6 overflow-hidden mt-2">
                                     <p className="font-mono text-xs text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                        // {node.desc}
+                                        {'//'} {node.desc}
                                     </p>
                                 </div>
                             </div>

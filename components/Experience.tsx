@@ -16,7 +16,7 @@ function Scene() {
             <Float speed={2} rotationIntensity={1} floatIntensity={1}>
                 <Model
                     path="/models/basketball.glb"
-                    position={[-3, 2, 0]}
+                    position={[-3, 2, 0] as [number, number, number]}
                     scale={0.8}
                     fallbackColor="orange"
                 />
@@ -26,7 +26,7 @@ function Scene() {
             <Float speed={1.5} rotationIntensity={1} floatIntensity={1} floatingRange={[-0.2, 0.2]}>
                 <Model
                     path="/models/knight.glb"
-                    position={[3, 2, -1]}
+                    position={[3, 2, -1] as [number, number, number]}
                     scale={0.8}
                     fallbackColor="#1a1a1a"
                 />
@@ -36,7 +36,7 @@ function Scene() {
             <Float speed={2.5} rotationIntensity={1.5} floatIntensity={1}>
                 <Model
                     path="/models/panther.glb"
-                    position={[-3.5, -2, 1]}
+                    position={[-3.5, -2, 1] as [number, number, number]}
                     scale={1}
                     fallbackColor="#111"
                 />
@@ -46,7 +46,7 @@ function Scene() {
             <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
                 <Model
                     path="/models/helmet.glb"
-                    position={[3.5, -2, 0]}
+                    position={[3.5, -2, 0] as [number, number, number]}
                     scale={1}
                     fallbackColor="silver"
                 />

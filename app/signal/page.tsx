@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+
 import FlowingMenu from "@/components/FlowingMenu";
 import { prisma } from "@/lib/prisma";
 

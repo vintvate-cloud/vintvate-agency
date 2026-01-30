@@ -12,7 +12,7 @@ const navLinks = [
     { name: "The Team", href: "/team" },
     { name: "About", href: "/about" },
     { name: "Signal", href: "/signal" },
-    { name: "Hypeboard", href: "/hypeboard" },
+    { name: "Services", href: "/services" },
     { name: "Let's Work", href: "/lets-work" },
 ];
 
@@ -73,7 +73,7 @@ export default function Navbar() {
 
                     {/* Right Links (Desktop) */}
                     <div className="hidden md:flex gap-8 items-center">
-                        {navLinks.slice(2, 4).map((link, index) => (
+                        {navLinks.slice(2, 5).map((link, index) => (
                             <NavLink key={index} name={link.name} href={link.href} />
                         ))}
                         <ThemeToggle />
@@ -141,8 +141,8 @@ export default function Navbar() {
                             transition={{ delay: 0.5 }}
                             className="absolute bottom-10 left-0 w-full text-center z-10"
                         >
-                            <a href="mailto:hello@vintvate.com" className="font-inter text-sm uppercase tracking-widest text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors block mb-4">
-                                hello@vintvate.com
+                            <a href="mailto:vintvate@gmail.com" className="font-inter text-sm uppercase tracking-widest text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors block mb-4">
+                                vintvate@gmail.com
                             </a>
                             <div className="flex justify-center gap-6 text-[var(--muted-foreground)]">
                                 <a href="#" className="uppercase text-xs tracking-widest hover:text-[var(--foreground)]">Instagram</a>

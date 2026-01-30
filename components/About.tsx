@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef } from "react";
 
 export default function About() {
@@ -17,7 +17,7 @@ export default function About() {
   const xRight1 = useTransform(scrollYProgress, [0, 1], [50, -100]);
   const xRight2 = useTransform(scrollYProgress, [0, 1], [-20, 80]); // Different speed/direction
 
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { y: "100%", opacity: 0 },
     visible: (i: number) => ({
       y: "0%",

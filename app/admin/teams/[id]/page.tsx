@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma"
 import { updateTeamMember } from "../../actions"
 import { notFound } from "next/navigation"
 
-export default async function EditTeamPage({ params }: { params: { id: string } }) {
+export default async function EditTeamPage({ params }: { params: Promise<{ id: string }> }) {
     // Await params specifically for Next.js 15+ if needed, though mostly direct access works in older.
     // However, it is safer to treat params as a promise in the newest versions or just use directly.
     // For now we assume standard behavior.

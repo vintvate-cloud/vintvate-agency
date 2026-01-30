@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Anton, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -43,10 +44,12 @@ export default function RootLayout({
           <Preloader />
           <GSAPWrapper>
             <Navbar />
-            <SmoothScroll>
-              {children}
-              <Footer />
-            </SmoothScroll>
+            <Suspense fallback={null}>
+              <SmoothScroll>
+                {children}
+                <Footer />
+              </SmoothScroll>
+            </Suspense>
           </GSAPWrapper>
         </ThemeProvider>
       </body>

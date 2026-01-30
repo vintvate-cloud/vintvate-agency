@@ -8,10 +8,11 @@ import { format } from "date-fns";
 // Force dynamic rendering to ensure fresh data
 export const dynamic = 'force-dynamic';
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
 
     const blog = await prisma.blog.findUnique({
-        where: { slug: params.slug }
+        where: { slug }
     });
 
     if (!blog) {
@@ -38,7 +39,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center font-inter text-xs md:text-sm uppercase tracking-widest text-[#888] border-t border-b border-[var(--border)] py-6 w-full opacity-80 hover:opacity-100 transition-opacity">
                         <div className="flex gap-4">
-                            <span>// {format(new Date(blog.createdAt), "MMMM dd, yyyy")}</span>
+                            <span>{'//'} {format(new Date(blog.createdAt), "MMMM dd, yyyy")}</span>
                         </div>
                         <div className="flex gap-4">
                             <span>OPR: <span className="text-white">{blog.author}</span></span>

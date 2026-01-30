@@ -61,9 +61,9 @@ export default function Footer() {
                 {/* CTA */}
                 <div ref={ctaRef} className="flex flex-col gap-4 max-w-lg">
                     <h3 className="font-anton text-4xl md:text-6xl uppercase leading-tight">
-                        Let's start<br />something new.
+                        Let&apos;s start<br />something new.
                     </h3>
-                    <Link href="#" className="font-inter text-sm md:text-base uppercase tracking-widest border-b border-white/30 pb-1 w-fit hover:border-white transition-colors">
+                    <Link href="/lets-work" className="font-inter text-sm md:text-base uppercase tracking-widest border-b border-white/30 pb-1 w-fit hover:border-white transition-colors">
                         Get in Touch
                     </Link>
                 </div>
@@ -84,7 +84,9 @@ export default function Footer() {
                         <span className="text-white font-bold opacity-100 mb-2">Directory</span>
                         <Link href="/" className="hover:text-white transition-colors">Home</Link>
                         <Link href="/about" className="hover:text-white transition-colors">About</Link>
+                        <Link href="/services" className="hover:text-white transition-colors">Services</Link>
                         <Link href="/works" className="hover:text-white transition-colors">Works</Link>
+                        <Link href="/lets-work" className="hover:text-white transition-colors">Let&apos;s Work</Link>
                         <Link href="/sitemap" className="hover:text-[var(--primary)] transition-colors text-white font-bold">System Index</Link>
                     </div>
                 </div>

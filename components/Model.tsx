@@ -1,18 +1,20 @@
 "use client";
 
 import { useGLTF } from "@react-three/drei";
-import { MeshProps } from "@react-three/fiber";
-import { useState, useEffect } from "react";
-import * as THREE from "three";
+import { ThreeElements } from "@react-three/fiber";
+import { useEffect } from "react";
+// import * as THREE from "three";
 
-interface ModelProps extends MeshProps {
+type ModelProps = ThreeElements['mesh'] & {
     path: string;
     fallbackColor?: string;
     scale?: number | [number, number, number];
+    position?: [number, number, number];
 }
 
 export default function Model({ path, fallbackColor = "black", scale = 1, ...props }: ModelProps) {
-    const [model, setModel] = useState<THREE.Group | null>(null);
+    // Removed unused state
+
 
     useEffect(() => {
         useGLTF.preload(path);
@@ -33,7 +35,7 @@ export default function Model({ path, fallbackColor = "black", scale = 1, ...pro
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { scene } = useGLTF(path);
         return <primitive object={scene} scale={scale} {...props} />;
-    } catch (e) {
+    } catch {
         // If loading fails (e.g. 404), return a placeholder sphere
         return (
             <mesh scale={scale} {...props}>

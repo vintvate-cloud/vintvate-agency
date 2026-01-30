@@ -16,7 +16,7 @@ export default function LetsWorkPage() {
                         transition={{ duration: 0.8 }}
                         className="font-anton text-[12vw] md:text-8xl leading-[0.8] uppercase tracking-tighter text-[var(--foreground)] mb-8"
                     >
-                        LET'S<br />WORK.
+                        LET&apos;S<br />WORK.
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -36,11 +36,11 @@ export default function LetsWorkPage() {
                 >
                     <div>
                         <p className="font-anton text-sm uppercase tracking-widest text-[var(--muted)] mb-1">Email</p>
-                        <a href="mailto:hello@vintvate.agency" className="font-inter text-xl font-bold hover:underline">hello@vintvate.agency</a>
+                        <a href="mailto:vintvate@gmail.com" className="font-inter text-xl font-bold hover:underline">vintvate@gmail.com</a>
                     </div>
                     <div>
                         <p className="font-anton text-sm uppercase tracking-widest text-[var(--muted)] mb-1">Phone</p>
-                        <p className="font-inter text-xl font-bold">+1 (555) 000-0000</p>
+                        <p className="font-inter text-xl font-bold">+91 9407358891</p>
                     </div>
                 </motion.div>
             </div>

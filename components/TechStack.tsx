@@ -101,8 +101,8 @@ export default function TechStack() {
                         </h2>
                     </div>
                     <p className="font-mono text-xs md:text-sm text-[var(--foreground)] text-right max-w-xs">
-                        // ALL SYSTEMS NOMINAL<br />
-                        // READY FOR DEPLOYMENT
+                        {'//'} ALL SYSTEMS NOMINAL<br />
+                        {'//'} READY FOR DEPLOYMENT
                     </p>
                 </div>
 

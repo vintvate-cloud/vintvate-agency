@@ -33,7 +33,7 @@ export default function Newsletter() {
                 setStatus("error");
                 setMessage(data.error || "Transmission failed.");
             }
-        } catch (error) {
+        } catch {
             setStatus("error");
             setMessage("Connection lost.");
         }
