@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -19,6 +20,7 @@ const navLinks = [
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { theme } = useTheme();
+    const pathname = usePathname();
 
     // Prevent scrolling when mobile menu is open
     useEffect(() => {
@@ -39,6 +41,8 @@ export default function Navbar() {
     const logoClass = theme === "dark"
         ? "w-16 h-16 md:w-20 md:h-20 object-contain invert brightness-0" // Force Black then Invert -> White
         : "w-16 h-16 md:w-20 md:h-20 object-contain brightness-0";      // Force Black
+
+    if (pathname?.startsWith("/admin")) return null;
 
     return (
         <>

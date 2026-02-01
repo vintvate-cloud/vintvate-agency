@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,6 +12,9 @@ export default function Footer() {
     const containerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLHeadingElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
+
+
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -46,6 +50,8 @@ export default function Footer() {
 
         return () => ctx.revert();
     }, []);
+
+    if (pathname?.startsWith("/admin")) return null;
 
     return (
         <footer ref={containerRef} className="relative w-full bg-[#050505] text-[#F4F4F4] pt-20 pb-6 px-6 md:px-12 overflow-hidden flex flex-col justify-between min-h-screen">

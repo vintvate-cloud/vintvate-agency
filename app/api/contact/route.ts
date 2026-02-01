@@ -5,11 +5,17 @@ export async function POST(req: Request) {
     try {
         const { name, email, service, budget } = await req.json();
 
+        console.log('Attempting to send email with:');
+        console.log('User:', process.env.GMAIL_USER);
+        console.log('Pass Check:', process.env.GMAIL_PASS ? `Length: ${process.env.GMAIL_PASS.length}, Content: ${process.env.GMAIL_PASS.replace(/ /g, '[SPACE]')}` : 'Missing');
+
+
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.GMAIL_USER,
-                pass: process.env.GMAIL_PASS,
+                // Gmail requires the app password with NO spaces, but we allow spaces in .env for readability
+                pass: process.env.GMAIL_PASS?.replace(/\s+/g, ''),
             },
         });
 

@@ -22,7 +22,7 @@ const testimonials = [
 
 export default function Testimonials() {
     return (
-        <section className="w-full pt-32 md:pt-48 pb-10 md:pb-20 bg-[var(--background)] relative z-20 overflow-hidden">
+        <section className="w-full pt-10 md:pt-20 pb-10 md:pb-20 bg-[var(--background)] relative z-20 overflow-hidden">
             <div className="px-6 md:px-12 mb-12">
                 <div className="w-full h-[1px] bg-[var(--border)]"></div>
                 <p className="font-anton text-sm uppercase tracking-widest text-[var(--muted-foreground)] mt-8">

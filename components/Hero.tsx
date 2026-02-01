@@ -106,7 +106,7 @@ function EasterEggText() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="absolute left-6 md:left-10 bottom-10 md:bottom-20 z-20 hidden md:block" // Hidden on mobile to avoid clutter
+                className="absolute left-6 md:left-10 bottom-2 md:bottom-8 z-20 hidden md:block" // Hidden on mobile to avoid clutter
             >
                 <span className="font-mono text-xs md:text-sm tracking-[0.3em] text-[var(--muted-foreground)] [writing-mode:vertical-rl] rotate-180 select-none">
                     #CODEUNLEASHED

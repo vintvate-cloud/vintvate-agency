@@ -117,7 +117,7 @@ export default function AdminLayoutWrapper({ children, user }: AdminLayoutWrappe
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 w-full min-w-0 pt-[72px] md:pt-0 overflow-y-auto h-screen">
+            <main className="flex-1 w-full min-w-0 pt-[72px] md:pt-0">
                 {/* Background Watermark */}
                 <div className="fixed top-0 right-0 w-full md:w-[calc(100%-18rem)] h-full flex items-center justify-center pointer-events-none opacity-[0.02] select-none overflow-hidden">
                     <span className="font-anton text-[20vh] md:text-[40vh] leading-none whitespace-nowrap text-[var(--foreground)] -rotate-12 origin-center">

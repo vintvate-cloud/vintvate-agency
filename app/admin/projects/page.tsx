@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { deleteProject } from '../actions'
 import Image from 'next/image'
+import DeleteProjectButton from './DeleteProjectButton'
 
 export default async function ProjectsPage() {
     const projects = await prisma.project.findMany({ orderBy: { createdAt: 'desc' } })
@@ -78,13 +79,13 @@ export default async function ProjectsPage() {
                                     </a>
                                 )}
                                 <div className="flex gap-4 mt-6 pt-4 border-t border-[var(--border)]">
-                                    <form action={deleteProject.bind(null, project.id)} className="flex-1">
-                                        <button
-                                            className="w-full py-2 font-inter text-xs uppercase tracking-widest text-red-500 hover:text-red-400 transition-colors cursor-pointer"
-                                        >
-                                            Delete
-                                        </button>
-                                    </form>
+                                    <Link
+                                        href={`/admin/projects/edit/${project.id}`}
+                                        className="flex-1 py-2 font-inter text-xs uppercase tracking-widest text-[var(--foreground)] hover:opacity-70 transition-opacity text-center border border-[var(--border)] hover:bg-[var(--foreground)] hover:text-[var(--background)]"
+                                    >
+                                        Edit
+                                    </Link>
+                                    <DeleteProjectButton projectId={project.id} />
                                 </div>
                             </div>
                         </div>

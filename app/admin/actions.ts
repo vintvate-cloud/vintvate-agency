@@ -53,6 +53,53 @@ export async function createBlog(formData: FormData) {
     redirect('/admin/blogs')
 }
 
+export async function updateBlog(id: string, formData: FormData) {
+    await checkAdmin()
+
+    const title = formData.get('title') as string
+    const excerpt = formData.get('excerpt') as string
+    const content = formData.get('content') as string
+    const author = formData.get('author') as string
+    const imageFile = formData.get('image') as File
+
+    let imagePath = undefined;
+
+    if (imageFile && imageFile.size > 0) {
+        const bytes = await imageFile.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+
+        const { uploadToCloudinary } = await import('@/lib/cloudinary')
+        imagePath = await uploadToCloudinary(buffer, 'vintvate_blogs')
+    }
+
+    let slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+    // Check if slug is taken by another blog
+    const existing = await prisma.blog.findFirst({
+        where: {
+            slug,
+            NOT: { id }
+        }
+    })
+    if (existing) {
+        slug = `${slug}-${Date.now()}`
+    }
+
+    await prisma.blog.update({
+        where: { id },
+        data: {
+            title,
+            slug,
+            excerpt,
+            content,
+            author,
+            ...(imagePath && { image: imagePath })
+        }
+    })
+
+    revalidatePath('/admin/blogs')
+    redirect('/admin/blogs')
+}
+
 export async function createTeamMember(formData: FormData) {
     await checkAdmin()
 
@@ -165,4 +212,38 @@ export async function deleteProject(id: string) {
     await checkAdmin()
     await prisma.project.delete({ where: { id } })
     revalidatePath('/admin/projects')
+}
+
+export async function updateProject(id: string, formData: FormData) {
+    await checkAdmin()
+
+    const title = formData.get('title') as string
+    const description = formData.get('description') as string
+    const link = formData.get('link') as string
+    const tags = formData.get('tags') as string
+    const imageFile = formData.get('image') as File
+
+    let imagePath = undefined;
+
+    if (imageFile && imageFile.size > 0) {
+        const bytes = await imageFile.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+
+        const { uploadToCloudinary } = await import('@/lib/cloudinary')
+        imagePath = await uploadToCloudinary(buffer, 'vintvate_projects')
+    }
+
+    await prisma.project.update({
+        where: { id },
+        data: {
+            title,
+            description,
+            link: link || null,
+            tags: tags || null,
+            ...(imagePath && { image: imagePath })
+        }
+    })
+
+    revalidatePath('/admin/projects')
+    redirect('/admin/projects')
 }
