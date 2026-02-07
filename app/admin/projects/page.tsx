@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { deleteProject } from '../actions'
+
 import Image from 'next/image'
 import DeleteProjectButton from './DeleteProjectButton'
 

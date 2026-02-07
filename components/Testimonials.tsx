@@ -4,19 +4,19 @@ import { motion } from "framer-motion";
 
 const testimonials = [
     {
-        quote: "They didn't just build a website. They built a war machine.",
-        author: "CEO, Stealth Startup",
-        role: "Series A Funded"
+        quote: "Vintvate helped us grow and boosted our clothing sales more than 2 times.",
+        author: "Sushil pandey",
+        role: "Proprietor of Mergvel"
     },
     {
-        quote: "Vintvate destroyed our old identity and gave us a legacy.",
-        author: "Sarah Jenkins",
-        role: "Director of Brand"
+        quote: "Since we got our new website, our client interactions are really on high and neighbour competitors are truly vanished",
+        author: "Rakesh bihani",
+        role: "Founder of Tejas-impex"
     },
     {
-        quote: "The ROI was immediate. These guys simply don't miss.",
-        author: "Marcus Thorne",
-        role: "Founder, Apex Capital"
+        quote: "Despite having large no. of social media apps. They gave us a paradise which is highly user interactive and people are really enjoying it",
+        author: "Vedant vyas",
+        role: "Founder of PixelPilgrim"
     }
 ];
 

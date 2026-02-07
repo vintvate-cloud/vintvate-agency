@@ -11,7 +11,6 @@ const FEATURES = [
     "Responsive Mobile Optimization",
     "SEO & Performance Tuning",
     "Deployment & Handoff",
-    "1 Month Support Module"
 ];
 
 export default function PricingPlan() {

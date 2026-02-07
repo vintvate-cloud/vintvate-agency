@@ -26,6 +26,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import GSAPWrapper from "@/components/GSAPWrapper";
 
@@ -43,6 +44,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Preloader />
           <GSAPWrapper>
+            <CustomCursor />
             <Navbar />
             <Suspense fallback={null}>
               <SmoothScroll>

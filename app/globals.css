@@ -154,7 +154,42 @@ body {
     @apply border-border outline-ring/50;
   }
 
+
+  /* Hide default cursor only on devices that support hover (desktop) */
+  @media (hover: hover) and (pointer: fine) {
+
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"] {
+      cursor: none !important;
+    }
+  }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 10px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
 }

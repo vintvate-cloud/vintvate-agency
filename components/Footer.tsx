@@ -113,7 +113,7 @@ export default function Footer() {
 
             {/* Copyright / Extra Info */}
             <div className="flex flex-col md:flex-row justify-between items-center w-full mt-4 border-t border-white/10 pt-6 font-inter text-[10px] uppercase tracking-widest text-white/40">
-                <p>&copy; 2024 Vintvate Agency. All Rights Reserved.</p>
+                <p>&copy; 2026 Vintvate Agency. All Rights Reserved.</p>
                 <div className="flex gap-4 mt-2 md:mt-0">
                     <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
                     <Link href="#" className="hover:text-white transition-colors">Terms of Use</Link>
