@@ -18,9 +18,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
   experimental: {
     serverActions: {
       bodySizeLimit: '5mb',
+      allowedOrigins: [process.env.NEXTAUTH_URL].filter(Boolean) as string[],
     },
   },
 };

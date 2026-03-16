@@ -5,7 +5,11 @@ import { usePathname } from "next/navigation";
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ShaderAnimation } from "./shader-animation";
+import dynamic from "next/dynamic";
+
+const ShaderAnimation = dynamic(() => import("./shader-animation").then(mod => mod.ShaderAnimation), { 
+    ssr: false 
+});
 
 
 export default function Footer() {
