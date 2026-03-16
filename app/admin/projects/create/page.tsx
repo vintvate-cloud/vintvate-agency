@@ -1,6 +1,7 @@
 import { createProject } from '../../actions'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
+import { ClientProfile } from '@prisma/client'
 
 export default async function CreateProjectPage() {
     const clients = await prisma.clientProfile.findMany({
@@ -40,7 +41,7 @@ export default async function CreateProjectPage() {
                             <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Client</label>
                             <select name="clientId" className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors">
                                 <option value="" className="bg-[var(--background)]">Unassigned</option>
-                                {clients.map((client: any) => (
+                                {clients.map((client: ClientProfile) => (
                                     <option key={client.id} value={client.id} className="bg-[var(--background)]">{client.name}</option>
                                 ))}
                             </select>

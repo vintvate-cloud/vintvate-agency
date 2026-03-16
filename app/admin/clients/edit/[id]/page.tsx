@@ -3,7 +3,7 @@ import { updateClient, addPayment } from '../../../actions'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { UserCircle, Briefcase, Mail, Phone, ExternalLink, Calendar } from 'lucide-react'
-import { ClientProfile, Project, Payment } from '@prisma/client'
+import { Project, Payment } from '@prisma/client'
 
 type ProjectWithPayments = Project & {
     payments: Payment[]
@@ -35,7 +35,7 @@ export default async function EditClientPage({ params }: { params: Promise<{ id:
                                 Client Intelligence
                             </h1>
                             <p className="font-inter text-sm uppercase tracking-widest text-[var(--muted-foreground)] mt-2">
-                                ID: {client.id.slice(-8).toUpperCase()} // {client.name}
+                                ID: {client.id.slice(-8).toUpperCase()} / {client.name}
                             </p>
                         </div>
                         <Link href="/admin/clients" className="font-inter text-xs uppercase tracking-widest text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">← Exit Profile</Link>

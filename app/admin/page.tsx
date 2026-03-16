@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
-import { LayoutDashboard, Users, Newspaper, UserCircle, Briefcase, Plus } from "lucide-react"
+import { Newspaper, UserCircle, Briefcase, Plus } from "lucide-react"
 
 export default async function AdminDashboard() {
     const stats = {
