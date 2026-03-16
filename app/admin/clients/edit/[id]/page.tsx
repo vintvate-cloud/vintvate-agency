@@ -3,6 +3,11 @@ import { updateClient, addPayment } from '../../../actions'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { UserCircle, Briefcase, Mail, Phone, ExternalLink, Calendar } from 'lucide-react'
+import { ClientProfile, Project, Payment } from '@prisma/client'
+
+type ProjectWithPayments = Project & {
+    payments: Payment[]
+}
 
 export default async function EditClientPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params
@@ -140,8 +145,8 @@ export default async function EditClientPage({ params }: { params: Promise<{ id:
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 gap-4">
-                            {client.projects.map((project: any) => {
-                                const received = project.payments?.reduce((acc: number, p: any) => acc + p.amount, 0) || 0
+                            {client.projects.map((project: ProjectWithPayments) => {
+                                const received = project.payments?.reduce((acc: number, p: Payment) => acc + p.amount, 0) || 0
                                 const progress = project.budget ? (received / project.budget) * 100 : 0
                                 
                                 return (
@@ -217,14 +222,14 @@ export default async function EditClientPage({ params }: { params: Promise<{ id:
                         <div className="flex justify-between items-center border-b border-[var(--border)] pb-4">
                             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)]">Total Value Portfolio</span>
                             <span className="font-anton text-2xl">
-                                ₹{client.projects.reduce((acc: number, p: any) => acc + (p.budget || 0), 0).toLocaleString('en-IN')}
+                                ₹{client.projects.reduce((acc: number, p: Project) => acc + (p.budget || 0), 0).toLocaleString('en-IN')}
                             </span>
                         </div>
                         <div className="flex justify-between items-center border-b border-[var(--border)] pb-4">
                             <span className="text-[10px] font-bold uppercase tracking-widest text-green-500">Collected Revenue</span>
                             <span className="font-anton text-2xl text-green-500">
-                                ₹{client.projects.reduce((acc: number, proj: any) => {
-                                    return acc + (proj.payments?.reduce((pa: number, c: any) => pa + c.amount, 0) || 0)
+                                ₹{client.projects.reduce((acc: number, proj: ProjectWithPayments) => {
+                                    return acc + (proj.payments?.reduce((pa: number, c: Payment) => pa + c.amount, 0) || 0)
                                 }, 0).toLocaleString('en-IN')}
                             </span>
                         </div>
@@ -260,7 +265,7 @@ export default async function EditClientPage({ params }: { params: Promise<{ id:
                                     required 
                                     className="w-full bg-[var(--background)] border border-[var(--border)] px-4 py-2 font-inter text-xs uppercase tracking-widest text-[var(--foreground)] focus:outline-none"
                                 >
-                                    {client.projects.map((p: any) => (
+                                    {client.projects.map((p: Project) => (
                                         <option key={p.id} value={p.id}>{p.title}</option>
                                     ))}
                                 </select>

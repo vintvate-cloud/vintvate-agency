@@ -2,6 +2,12 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
 import DeleteProjectButton from './DeleteProjectButton'
+import { ClientProfile, Project, Payment } from '@prisma/client'
+
+type ProjectWithRelations = Project & {
+    client: ClientProfile | null;
+    payments: Payment[];
+}
 
 export default async function ProjectsPage() {
     const projects = await prisma.project.findMany({ 
@@ -57,12 +63,12 @@ export default async function ProjectsPage() {
 
             {projects.length === 0 ? (
                 <div className="border border-dashed border-[var(--border)] p-16 text-center">
-                    <p className="font-inter text-sm text-[var(--muted-foreground)]">🚀 Ready to start a new mission? Click "Initiate Project".</p>
+                    <p className="font-inter text-sm text-[var(--muted-foreground)]">🚀 Ready to start a new mission? Click &quot;Initiate Project&quot;.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-4">
-                    {projects.map((project: any) => {
-                        const received = project.payments?.reduce((acc: any, p: any) => acc + p.amount, 0) || 0
+                    {projects.map((project: ProjectWithRelations) => {
+                        const received = project.payments?.reduce((acc: number, p: Payment) => acc + p.amount, 0) || 0
                         const progress = project.budget ? (received / project.budget) * 100 : 0
 
                         return (

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, LayoutDashboard, Users, Newspaper, UserCircle, Briefcase, ChevronRight } from "lucide-react";
+import { Menu, LayoutDashboard, Users, Newspaper, UserCircle, Briefcase, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AdminLayoutWrapperProps {
@@ -135,7 +135,7 @@ export default function AdminLayoutWrapper({ children, user }: AdminLayoutWrappe
     );
 }
 
-function NavLink({ href, label, Icon, pathname, setOpen }: { href: string; label: string; Icon: any; pathname: string; setOpen: (open: boolean) => void }) {
+function NavLink({ href, label, Icon, pathname, setOpen }: { href: string; label: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number }>; pathname: string; setOpen: (open: boolean) => void }) {
     const isActive = pathname === href;
     return (
         <Link

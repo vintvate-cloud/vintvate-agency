@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma'
 import { updateProject, addPayment, deletePayment } from '../../../actions'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
+import { ClientProfile, Payment } from '@prisma/client'
 
 export default async function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params
@@ -47,7 +47,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
                                 <label className="block font-inter text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Client</label>
                                 <select name="clientId" defaultValue={project.clientId || ''} className="w-full bg-transparent border-b border-[var(--border)] py-2 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none">
                                     <option value="" className="bg-[var(--background)]">Unassigned</option>
-                                    {clients.map((client: any) => (
+                                    {clients.map((client: ClientProfile) => (
                                         <option key={client.id} value={client.id} className="bg-[var(--background)]">{client.name}</option>
                                     ))}
                                 </select>
@@ -127,7 +127,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
                         {project.payments?.length === 0 ? (
                             <p className="font-inter text-[10px] uppercase text-[var(--muted-foreground)] italic">No records found.</p>
                         ) : (
-                            project.payments.map((p: any) => (
+                            project.payments.map((p: Payment) => (
                                 <div key={p.id} className="border-l-2 border-[var(--foreground)] pl-4 py-2 flex justify-between items-center group">
                                     <div>
                                         <p className="font-anton text-lg text-[var(--foreground)]">₹{p.amount.toLocaleString('en-IN')}</p>

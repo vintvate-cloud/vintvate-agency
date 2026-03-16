@@ -1,6 +1,13 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import DeleteClientButton from './DeleteClientButton'
+import { ClientProfile, Project, Payment } from '@prisma/client'
+
+type ClientWithProjects = ClientProfile & {
+    projects: (Project & {
+        payments: Payment[]
+    })[]
+}
 
 export default async function ClientsPage() {
     const clients = await prisma.clientProfile.findMany({
@@ -37,9 +44,9 @@ export default async function ClientsPage() {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {clients.map((client: any) => {
-                        const totalLTV = client.projects.reduce((acc: number, proj: any) => {
-                            return acc + (proj.payments?.reduce((pa: number, c: any) => pa + c.amount, 0) || 0)
+                    {clients.map((client: ClientWithProjects) => {
+                        const totalLTV = client.projects.reduce((acc: number, proj: (Project & { payments: Payment[] })) => {
+                            return acc + (proj.payments?.reduce((pa: number, c: Payment) => pa + c.amount, 0) || 0)
                         }, 0)
 
                         return (
@@ -82,7 +89,7 @@ export default async function ClientsPage() {
                                         </p>
                                         <div className="flex flex-col gap-2">
                                             {client.projects.length > 0 ? (
-                                                client.projects.slice(0, 3).map((p: any) => (
+                                                client.projects.slice(0, 3).map((p: Project) => (
                                                     <Link 
                                                         key={p.id} 
                                                         href={`/admin/projects/edit/${p.id}`}
