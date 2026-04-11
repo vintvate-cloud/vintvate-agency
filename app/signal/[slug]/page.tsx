@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             <span>{'//'} {format(new Date(blog.createdAt), "MMMM dd, yyyy")}</span>
                         </div>
                         <div className="flex gap-4">
-                            <span>OPR: <span className="text-white">{blog.author}</span></span>
+                            <span>OPR: <span className="text-foreground">{blog.author}</span></span>
                             <span className="opacity-50">|</span>
                             <span>ID: {blog.id.slice(-4)}</span>
                         </div>
@@ -63,7 +63,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 )}
 
                 {/* Content */}
-                <article className="prose prose-xl prose-invert max-w-none font-inter text-[#EAEAEA] md:text-xl leading-relaxed tracking-wide prose-headings:font-anton prose-headings:uppercase prose-headings:text-white prose-a:text-white prose-a:underline prose-strong:text-white prose-p:mb-6 first-letter:float-left first-letter:text-6xl first-letter:font-anton first-letter:mr-3 first-letter:leading-none first-letter:text-white">
+                <article className="prose dark:prose-invert prose-xl max-w-none font-inter text-foreground/90 md:text-xl leading-relaxed tracking-wide prose-headings:font-anton prose-headings:uppercase prose-headings:text-foreground prose-a:text-foreground prose-a:underline prose-strong:text-foreground prose-p:mb-6 first-letter:float-left first-letter:text-6xl first-letter:font-anton first-letter:mr-3 first-letter:leading-none first-letter:text-foreground">
                     <div dangerouslySetInnerHTML={{ __html: blog.content.replace(/\n/g, '<br/>') }} />
                 </article>
 

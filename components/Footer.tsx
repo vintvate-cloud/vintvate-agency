@@ -111,7 +111,7 @@ export default function Footer() {
                     VINTVATE
                 </h1>
                 <span className="hidden md:block absolute right-0 bottom-8 font-mono text-sm tracking-[0.3em] text-[#F4F4F4] [writing-mode:vertical-rl] rotate-180 opacity-60">
-                    #CODEUNLEASHED
+                    #TOTALTAKEOVER
                 </span>
             </div>
 

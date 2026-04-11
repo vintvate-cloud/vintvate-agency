@@ -51,7 +51,7 @@ function EasterEggText() {
         if (isAnimating) return;
 
         if (!isToggled) {
-            typeWriter("CODE", "UNLEASHED");
+            typeWriter("TOTAL", "TAKEOVER");
         } else {
             typeWriter("VINT", "VATE");
         }
@@ -109,7 +109,7 @@ function EasterEggText() {
                 className="absolute left-6 md:left-10 bottom-2 md:bottom-8 z-20 hidden md:block" // Hidden on mobile to avoid clutter
             >
                 <span className="font-mono text-xs md:text-sm tracking-[0.3em] text-[var(--muted-foreground)] [writing-mode:vertical-rl] rotate-180 select-none">
-                    #CODEUNLEASHED
+                    #TOTALTAKEOVER
                 </span>
             </motion.div>
         </>

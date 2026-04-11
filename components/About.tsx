@@ -16,7 +16,7 @@ export default function About() {
   };
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-screen bg-black text-[#F4F4F4] px-6 py-24 md:px-12 flex flex-col justify-center items-start overflow-hidden">
+    <section ref={containerRef} className="relative w-full min-h-screen bg-[#080808] text-[#F4F4F4] px-6 py-24 md:px-12 flex flex-col justify-center items-start overflow-hidden">
 
       {/* Decorative Line */}
       <div className="w-full h-[1px] bg-white/20 mb-20 md:mb-32"></div>
