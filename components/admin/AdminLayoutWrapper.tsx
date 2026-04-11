@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, LayoutDashboard, Users, Newspaper, UserCircle, Briefcase, ChevronRight } from "lucide-react";
+import { Menu, LayoutDashboard, Users, Newspaper, UserCircle, Briefcase, ChevronRight, Layout } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AdminLayoutWrapperProps {
@@ -97,9 +97,10 @@ export default function AdminLayoutWrapper({ children, user }: AdminLayoutWrappe
                             Core Modules
                         </span>
                     </div>
-                    <NavLink href="/admin" label="Dashboard" Icon={LayoutDashboard} pathname={pathname} setOpen={setIsSidebarOpen} />
+                    <NavLink href="/admin" label="Dashboard" Icon={LayoutDashboard} pathname={pathname} setOpen={setIsSidebarOpen} exact />
                     <NavLink href="/admin/clients" label="Clients" Icon={UserCircle} pathname={pathname} setOpen={setIsSidebarOpen} />
                     <NavLink href="/admin/projects" label="Mission Control" Icon={Briefcase} pathname={pathname} setOpen={setIsSidebarOpen} />
+                    <NavLink href="/admin/templates" label="Templates" Icon={Layout} pathname={pathname} setOpen={setIsSidebarOpen} />
                     
                     <div className="px-4 mt-10 mb-4 pt-4 border-t border-[var(--border)]/50">
                         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--muted-foreground)] opacity-40">
@@ -135,8 +136,8 @@ export default function AdminLayoutWrapper({ children, user }: AdminLayoutWrappe
     );
 }
 
-function NavLink({ href, label, Icon, pathname, setOpen }: { href: string; label: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number }>; pathname: string; setOpen: (open: boolean) => void }) {
-    const isActive = pathname === href;
+function NavLink({ href, label, Icon, pathname, setOpen, exact }: { href: string; label: string; Icon: React.ComponentType<{ size?: number; strokeWidth?: number }>; pathname: string; setOpen: (open: boolean) => void; exact?: boolean }) {
+    const isActive = exact ? pathname === href : pathname === href || pathname.startsWith(href + '/');
     return (
         <Link
             href={href}

@@ -46,13 +46,14 @@ model Project {
   link        String?        // Live link
   tags        String?
   envVars     String?        @db.Text
-  
+  type        String         @default("CLIENT") // CLIENT or TEMPLATE
+
   // Agency Management Fields
   status      String         @default("PLANNED") // PLANNED, PROGRESS, COMPLETED, PAUSED
   budget      Float?         @default(0)
   startDate   DateTime?      @default(now())
   endDate     DateTime?      
-  
+
   clientId    String?
   client      ClientProfile? @relation(fields: [clientId], references: [id])
   payments    Payment[]

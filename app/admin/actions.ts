@@ -193,6 +193,7 @@ export async function createProject(formData: FormData) {
             link: link || null,
             tags: tags || null,
             status: (formData.get('status') as string) || 'PLANNED',
+            type: (formData.get('type') as string) || 'CLIENT',
             budget: budget,
             startDate: startDate,
             endDate: endDate,
@@ -204,6 +205,8 @@ export async function createProject(formData: FormData) {
 
     revalidatePath('/admin/projects')
     revalidatePath('/admin/clients')
+    revalidatePath('/works')
+    revalidatePath('/works/templates')
     redirect('/admin/projects')
 }
 
@@ -256,6 +259,7 @@ export async function updateProject(id: string, formData: FormData) {
             link: link || null,
             tags: tags || null,
             status: (formData.get('status') as string) || undefined,
+            type: (formData.get('type') as string) || undefined,
             budget: budget,
             startDate: startDate,
             endDate: endDate,
@@ -267,6 +271,8 @@ export async function updateProject(id: string, formData: FormData) {
 
     revalidatePath('/admin/projects')
     revalidatePath('/admin/clients')
+    revalidatePath('/works')
+    revalidatePath('/works/templates')
     redirect('/admin/projects')
 }
 

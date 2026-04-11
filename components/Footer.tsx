@@ -7,8 +7,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import dynamic from "next/dynamic";
 
-const ShaderAnimation = dynamic(() => import("./shader-animation").then(mod => mod.ShaderAnimation), { 
-    ssr: false 
+const ShaderAnimation = dynamic(() => import("./shader-animation").then(mod => mod.ShaderAnimation), {
+    ssr: false
 });
 
 

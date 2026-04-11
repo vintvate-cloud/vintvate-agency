@@ -38,14 +38,22 @@ export default async function CreateProjectPage() {
                             <input type="text" name="title" required className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors" placeholder="Project Title" />
                         </div>
                         <div>
-                            <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Client</label>
-                            <select name="clientId" className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors">
-                                <option value="" className="bg-[var(--background)]">Unassigned</option>
-                                {clients.map((client: ClientProfile) => (
-                                    <option key={client.id} value={client.id} className="bg-[var(--background)]">{client.name}</option>
-                                ))}
+                            <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Project Type</label>
+                            <select name="type" className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors">
+                                <option value="CLIENT" className="bg-[var(--background)]">Client Work</option>
+                                <option value="TEMPLATE" className="bg-[var(--background)]">Template / Product</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div>
+                        <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Client</label>
+                        <select name="clientId" className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors">
+                            <option value="" className="bg-[var(--background)]">Unassigned</option>
+                            {clients.map((client: ClientProfile) => (
+                                <option key={client.id} value={client.id} className="bg-[var(--background)]">{client.name}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div>

@@ -21,9 +21,9 @@ export default async function Home() {
       <Hero />
       <Marquee />
       <About />
-      <Testimonials />
       <Blueprint />
       <Works projects={projects} />
+      <Testimonials />
       <PricingPlan />
     </main>
   );

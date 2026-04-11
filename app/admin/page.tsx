@@ -4,10 +4,12 @@ import { Newspaper, UserCircle, Briefcase, Plus } from "lucide-react"
 
 export default async function AdminDashboard() {
     const stats = {
-        projects: await prisma.project.count(),
-        clients: await prisma.clientProfile.count(),
-        blogs: await prisma.blog.count(),
-        revenue: (await prisma.payment.aggregate({ _sum: { amount: true } }))._sum.amount || 0
+        projects: await prisma.project.count().catch(() => 0),
+        clients: await (prisma as any).clientProfile?.count().catch(() => 0) ?? 0,
+        blogs: await prisma.blog.count().catch(() => 0),
+        revenue: await (prisma as any).payment?.aggregate({ _sum: { amount: true } })
+            .then((r: any) => r._sum?.amount || 0)
+            .catch(() => 0) ?? 0
     }
 
     const cards = [
