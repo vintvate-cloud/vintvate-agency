@@ -45,7 +45,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
                             </div>
                             <div>
                                 <label className="block font-inter text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Project Type</label>
-                                <select name="type" defaultValue={(project as any).type || 'CLIENT'} className="w-full bg-transparent border-b border-[var(--border)] py-2 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none">
+                                <select name="type" defaultValue={project.type || 'CLIENT'} className="w-full bg-transparent border-b border-[var(--border)] py-2 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none">
                                     <option value="CLIENT" className="bg-[var(--background)]">Client Work</option>
                                     <option value="TEMPLATE" className="bg-[var(--background)]">Template / Product</option>
                                 </select>

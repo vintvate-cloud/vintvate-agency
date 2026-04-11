@@ -10,7 +10,7 @@ export default async function TemplatesPage() {
     const allProjects = await prisma.project.findMany({
         orderBy: { createdAt: 'desc' }
     });
-    const projects = allProjects.filter(p => (p as any).type === 'TEMPLATE');
+    const projects = allProjects.filter(p => p.type === 'TEMPLATE');
 
     return (
         <main className="w-full min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-32 px-6 md:px-12 pb-20">

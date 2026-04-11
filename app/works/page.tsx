@@ -11,7 +11,7 @@ export default async function WorksPage() {
         orderBy: { createdAt: 'desc' }
     });
     // Existing rows without 'type' default to CLIENT
-    const projects = allProjects.filter(p => !((p as any).type) || (p as any).type === 'CLIENT');
+    const projects = allProjects.filter(p => !p.type || p.type === 'CLIENT');
 
     return (
         <main className="w-full min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-32 px-6 md:px-12 pb-20">
