@@ -73,7 +73,7 @@ export default function ServicesPage() {
 
                     <div className="max-w-sm pb-2">
                         <p className="font-inter text-sm md:text-base leading-relaxed text-foreground/60 tracking-wider">
-                            We don't just make things look good. We engineer high-leverage digital assets designed to scale your authority and crush your market.
+                            {"We don't just make things look good. We engineer high-leverage digital assets designed to scale your authority and crush your market."}
                         </p>
                     </div>
                 </div>
