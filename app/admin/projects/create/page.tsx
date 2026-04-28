@@ -38,9 +38,11 @@ export default async function CreateProjectPage() {
                             <input type="text" name="title" required className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors" placeholder="Project Title" />
                         </div>
                         <div>
-                            <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Project Type</label>
-                            <select name="type" className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors">
-                                <option value="CLIENT" className="bg-[var(--background)]">Client Work</option>
+                            <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Project Type *</label>
+                            <select name="type" required defaultValue="" className="w-full bg-transparent border-b-2 border-[var(--border)] py-3 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors">
+                                <option value="" disabled className="bg-[var(--background)]">Select a type...</option>
+                                <option value="WEBSITE" className="bg-[var(--background)]">Website</option>
+                                <option value="APP" className="bg-[var(--background)]">App</option>
                                 <option value="TEMPLATE" className="bg-[var(--background)]">Template / Product</option>
                             </select>
                         </div>
