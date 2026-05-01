@@ -41,6 +41,7 @@ export default function LetsWorkPage() {
                     <div>
                         <p className="font-anton text-sm uppercase tracking-widest text-[var(--muted)] mb-1">Phone</p>
                         <p className="font-inter text-xl font-bold">+91 9407358891</p>
+                        <p className="font-inter text-xl font-bold">+91 8989693739</p>
                     </div>
                 </motion.div>
             </div>
