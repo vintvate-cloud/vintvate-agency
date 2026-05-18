@@ -28,9 +28,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
                         initial={{ y: 0 }}
                         animate={{ y: "-100%" }}
                         transition={{
-                            duration: 0.8,
-                            delay: i * 0.05, // Stagger effect
-                            ease: [0.76, 0, 0.24, 1] // Custom bezier for smooth feel
+                            duration: 0.4,
+                            delay: i * 0.03, // Faster Stagger
+                            ease: [0.76, 0, 0.24, 1]
                         }}
                     />
                 ))}
@@ -38,9 +38,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
             {/* Content with Depth */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 className="w-full min-h-screen"
             >
                 {children}

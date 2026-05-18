@@ -109,13 +109,30 @@ export default function ProjectView({ project, nextProject }: { project: DBProje
             {/* Hero Image Block */}
             <section className="px-6 md:px-12 max-w-[1920px] mx-auto mb-20 md:mb-32">
                 <div className="relative w-full aspect-video md:aspect-[21/9] rounded-xl overflow-hidden bg-[var(--card)]">
-                    <Image
-                        src={project.image || "/placeholder-project.jpg"}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
+                    {project.image ? (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    ) : project.link ? (
+                        <img
+                            src={`https://api.microlink.io/?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            loading="eager"
+                        />
+                    ) : (
+                        <Image
+                            src="/placeholder-project.jpg"
+                            alt={project.title}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    )}
                 </div>
             </section>
 

@@ -3,6 +3,7 @@ import { updateProject, addPayment, deletePayment } from '../../../actions'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ClientProfile, Payment } from '@prisma/client'
+import Image from 'next/image'
 
 export default async function EditProjectPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params
@@ -86,6 +87,37 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
                                 <label className="block font-inter text-[10px] font-bold uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Launch Date</label>
                                 <input type="date" name="startDate" defaultValue={project.startDate ? new Date(project.startDate).toISOString().split('T')[0] : ''} className="w-full bg-transparent border-b border-[var(--border)] py-2 font-inter text-[var(--foreground)]" />
                             </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Live URLs (Links)</label>
+                                <input type="url" name="link" defaultValue={project.link || ''} className="w-full bg-transparent border-b border-[var(--border)] py-2 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors" placeholder="https://" />
+                            </div>
+                            <div>
+                                <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Stack Tags</label>
+                                <input type="text" name="tags" defaultValue={project.tags || ''} className="w-full bg-transparent border-b border-[var(--border)] py-2 font-inter text-[var(--foreground)] focus:border-[var(--foreground)] focus:outline-none transition-colors" placeholder="Next.js, Tailwind, etc." />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] mb-3">Update Project Banner (Optional)</label>
+                            {project.image && (
+                                <div className="mb-4 flex flex-col gap-3">
+                                    <div className="relative aspect-video w-48 border border-[var(--border)]">
+                                        <Image src={project.image} alt={project.title} fill className="object-cover object-top" />
+                                    </div>
+                                    <label className="flex items-center gap-2 font-inter text-[10px] uppercase tracking-widest text-[var(--muted-foreground)] cursor-pointer hover:text-[var(--foreground)] transition-colors">
+                                        <input type="checkbox" name="removeImage" value="true" className="w-3 h-3 accent-[var(--foreground)]" />
+                                        Remove this image and use live preview instead
+                                    </label>
+                                </div>
+                            )}
+                            <input
+                                type="file" name="image" accept="image/*"
+                                className="w-full bg-transparent border-b border-[var(--border)] py-2 font-inter text-[var(--foreground)] focus:outline-none file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-semibold file:bg-[var(--foreground)] file:text-[var(--background)] hover:file:opacity-90"
+                            />
+                            <p className="text-[10px] text-[var(--muted-foreground)] mt-2">Leave empty to keep current image. If there is no image and you provide a link, an automatic live preview will be generated using Microlink.</p>
                         </div>
 
                         <div>

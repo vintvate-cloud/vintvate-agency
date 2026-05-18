@@ -42,12 +42,28 @@ export default function Works({ projects }: { projects: Project[] }) {
                     {projects.map((project) => (
                         <Link href={`/works/${project.id}`} key={project.id} className="group relative h-[60vh] w-[90vw] md:w-[50vw] flex-shrink-0 overflow-hidden rounded-xl bg-[var(--card)] border border-[var(--border)] cursor-none md:cursor-pointer">
                             <div className="absolute inset-0 z-0">
-                                <Image
-                                    src={project.image || "/placeholder-project.jpg"}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 hover:opacity-100"
-                                />
+                                {project.image ? (
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 hover:opacity-100"
+                                    />
+                                ) : project.link ? (
+                                    <img
+                                        src={`https://api.microlink.io/?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 hover:opacity-100"
+                                        loading="lazy"
+                                    />
+                                ) : (
+                                    <Image
+                                        src="/placeholder-project.jpg"
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 hover:opacity-100"
+                                    />
+                                )}
                                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
                             </div>
 

@@ -98,7 +98,7 @@ export default function CustomCursor() {
                                 width: isHovering ? 80 : 30, // Larger expansion
                                 height: isHovering ? 80 : 30,
                                 borderWidth: isHovering ? "0px" : "1px",
-                                backgroundColor: isHovering ? "rgba(255, 255, 255, 0.2)" : "transparent",
+                                backgroundColor: isHovering ? "rgba(255, 255, 255, 0.2)" : "rgba(255, 255, 255, 0)",
                                 borderColor: "rgba(255, 255, 255, 0.5)",
                                 x: "-50%",
                                 y: "-50%"

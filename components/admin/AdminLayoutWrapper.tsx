@@ -99,7 +99,7 @@ export default function AdminLayoutWrapper({ children, user }: AdminLayoutWrappe
                     </div>
                     <NavLink href="/admin" label="Dashboard" Icon={LayoutDashboard} pathname={pathname} setOpen={setIsSidebarOpen} exact />
                     <NavLink href="/admin/clients" label="Clients" Icon={UserCircle} pathname={pathname} setOpen={setIsSidebarOpen} />
-                    <NavLink href="/admin/projects" label="Mission Control" Icon={Briefcase} pathname={pathname} setOpen={setIsSidebarOpen} />
+                    <NavLink href="/admin/projects" label="Projects" Icon={Briefcase} pathname={pathname} setOpen={setIsSidebarOpen} />
                     <NavLink href="/admin/templates" label="Templates" Icon={Layout} pathname={pathname} setOpen={setIsSidebarOpen} />
                     
                     <div className="px-4 mt-10 mb-4 pt-4 border-t border-[var(--border)]/50">
@@ -107,8 +107,8 @@ export default function AdminLayoutWrapper({ children, user }: AdminLayoutWrappe
                             Content Ops
                         </span>
                     </div>
-                    <NavLink href="/admin/blogs" label="Archives" Icon={Newspaper} pathname={pathname} setOpen={setIsSidebarOpen} />
-                    <NavLink href="/admin/teams" label="Commanders" Icon={Users} pathname={pathname} setOpen={setIsSidebarOpen} />
+                    <NavLink href="/admin/blogs" label="Blogs" Icon={Newspaper} pathname={pathname} setOpen={setIsSidebarOpen} />
+                    <NavLink href="/admin/teams" label="Team" Icon={Users} pathname={pathname} setOpen={setIsSidebarOpen} />
                 </nav>
 
                 {/* Footer */}

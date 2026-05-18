@@ -45,13 +45,20 @@ export default async function TemplatesPage() {
                             className="group border border-[var(--border)] bg-[var(--card)] hover:border-[var(--foreground)] transition-all overflow-hidden flex flex-col"
                         >
                             {/* Thumbnail */}
-                            <div className="relative aspect-[4/3] bg-[var(--background)] flex-shrink-0">
+                            <div className="relative aspect-video bg-[var(--background)] flex-shrink-0 border-b border-[var(--border)]">
                                 {template.image ? (
                                     <Image
                                         src={template.image}
                                         alt={template.title}
                                         fill
-                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                        className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
+                                    />
+                                ) : template.link ? (
+                                    <img
+                                        src={`https://api.microlink.io/?url=${encodeURIComponent(template.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                                        alt={template.title}
+                                        className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700"
+                                        loading="lazy"
                                     />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center font-anton text-6xl opacity-10">
@@ -96,7 +103,7 @@ export default async function TemplatesPage() {
                                 {/* Actions */}
                                 <div className="flex gap-2 mt-auto">
                                     <Link
-                                        href={`/admin/projects/edit/${template.id}`}
+                                        href={`/admin/templates/edit/${template.id}`}
                                         className="flex-1 py-2 font-inter text-[10px] font-bold uppercase tracking-widest text-[var(--foreground)] text-center border border-[var(--border)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors"
                                     >
                                         Edit

@@ -85,6 +85,13 @@ export default async function ProjectsPage() {
                                             fill
                                             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                                         />
+                                    ) : project.link ? (
+                                        <img
+                                            src={`https://api.microlink.io/?url=${encodeURIComponent(project.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                            loading="lazy"
+                                        />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center font-anton text-4xl opacity-10">
                                             {project.title.charAt(0)}

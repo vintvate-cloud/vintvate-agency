@@ -207,7 +207,11 @@ export async function createProject(formData: FormData) {
     revalidatePath('/admin/clients')
     revalidatePath('/works')
     revalidatePath('/works/templates')
-    redirect('/admin/projects')
+    if (formData.get('type') === 'TEMPLATE') {
+        redirect('/admin/templates')
+    } else {
+        redirect('/admin/projects')
+    }
 }
 
 export async function deleteBlog(id: string) {
@@ -236,6 +240,7 @@ export async function updateProject(id: string, formData: FormData) {
     const link = formData.get('link') as string
     const tags = formData.get('tags') as string
     const imageFile = formData.get('image') as File
+    const removeImage = formData.get('removeImage') === 'true'
 
     let imagePath = undefined;
 
@@ -265,7 +270,7 @@ export async function updateProject(id: string, formData: FormData) {
             endDate: endDate,
             envVars: formData.get('envVars') as string || null,
             clientId: formData.get('clientId') as string || null,
-            ...(imagePath && { image: imagePath })
+            ...(imagePath ? { image: imagePath } : (removeImage ? { image: null } : {}))
         }
     })
 
@@ -273,7 +278,11 @@ export async function updateProject(id: string, formData: FormData) {
     revalidatePath('/admin/clients')
     revalidatePath('/works')
     revalidatePath('/works/templates')
-    redirect('/admin/projects')
+    if (formData.get('type') === 'TEMPLATE') {
+        redirect('/admin/templates')
+    } else {
+        redirect('/admin/projects')
+    }
 }
 
 export async function createClient(formData: FormData) {

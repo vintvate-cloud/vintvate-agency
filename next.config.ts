@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "image.thum.io",
+      },
     ],
   },
   transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
