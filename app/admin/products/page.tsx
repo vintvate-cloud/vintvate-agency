@@ -30,7 +30,7 @@ export default async function ProductsPage() {
             {products.length === 0 ? (
                 <div className="border border-dashed border-[var(--border)] p-16 text-center">
                     <p className="font-inter text-sm text-[var(--muted-foreground)]">
-                        No products found. Turn on the "Is Product" toggle in your Projects list!
+                        No products found. Turn on the &quot;Is Product&quot; toggle in your Projects list!
                     </p>
                 </div>
             ) : (

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
