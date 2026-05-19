@@ -101,6 +101,8 @@ export default function AdminLayoutWrapper({ children, user }: AdminLayoutWrappe
                     <NavLink href="/admin/clients" label="Clients" Icon={UserCircle} pathname={pathname} setOpen={setIsSidebarOpen} />
                     <NavLink href="/admin/projects" label="Projects" Icon={Briefcase} pathname={pathname} setOpen={setIsSidebarOpen} />
                     <NavLink href="/admin/templates" label="Templates" Icon={Layout} pathname={pathname} setOpen={setIsSidebarOpen} />
+                    <NavLink href="/admin/products" label="Products" Icon={Layout} pathname={pathname} setOpen={setIsSidebarOpen} />
+
                     
                     <div className="px-4 mt-10 mb-4 pt-4 border-t border-[var(--border)]/50">
                         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--muted-foreground)] opacity-40">

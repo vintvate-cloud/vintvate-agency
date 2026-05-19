@@ -350,3 +350,60 @@ export async function deletePayment(id: string, projectId: string) {
     await prisma.payment.delete({ where: { id } })
     revalidatePath(`/admin/projects/edit/${projectId}`)
 }
+
+export async function createAdminProduct(formData: FormData) {
+    await checkAdmin()
+
+    const title = formData.get('title') as string
+    const description = formData.get('description') as string
+    const link = formData.get('link') as string
+    const type = formData.get('type') as string
+    const imageFile = formData.get('image') as File
+
+    let imagePath = null;
+
+    if (imageFile && imageFile.size > 0) {
+        const bytes = await imageFile.arrayBuffer()
+        const buffer = Buffer.from(bytes)
+
+        const { uploadToCloudinary } = await import('@/lib/cloudinary')
+        imagePath = await uploadToCloudinary(buffer, 'vintvate_products')
+    }
+
+    await prisma.product.create({
+        data: {
+            title,
+            description,
+            link: link || null,
+            type: type || 'WEB_PRODUCT',
+            image: imagePath
+        }
+    })
+
+    revalidatePath('/admin/products')
+    revalidatePath('/products')
+    redirect('/admin/products')
+}
+
+export async function deleteAdminProduct(id: string) {
+    await checkAdmin()
+    await prisma.product.delete({ where: { id } })
+    revalidatePath('/admin/products')
+    revalidatePath('/products')
+}
+
+export async function toggleProjectProduct(id: string, isProduct: boolean, productType: string) {
+    await checkAdmin()
+    await prisma.project.update({
+        where: { id },
+        data: {
+            isProduct,
+            productType
+        }
+    })
+    revalidatePath('/admin/projects')
+    revalidatePath('/admin/products')
+    revalidatePath('/products')
+}
+
+

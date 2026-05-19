@@ -13,6 +13,7 @@ const navLinks = [
     { name: "The Team", href: "/team" },
     { name: "About", href: "/about" },
     { name: "Works", href: "/works" },
+    { name: "Products", href: "/products" },
     { name: "Signal", href: "/signal" },
     { name: "Services", href: "/services" },
     { name: "Let's Work", href: "/lets-work" },
@@ -56,7 +57,7 @@ export default function Navbar() {
                 <div className="flex justify-between items-center max-w-screen-2xl mx-auto relative">
                     {/* Left Links (Desktop) */}
                     <div className="hidden md:flex gap-8">
-                        {navLinks.slice(0, 3).map((link, index) => (
+                        {navLinks.slice(0, Math.ceil(navLinks.length / 2)).map((link, index) => (
                             <NavLink key={index} name={link.name} href={link.href} />
                         ))}
                     </div>
@@ -78,7 +79,7 @@ export default function Navbar() {
 
                     {/* Right Links (Desktop) */}
                     <div className="hidden md:flex gap-8 items-center">
-                        {navLinks.slice(3, 6).map((link, index) => (
+                        {navLinks.slice(Math.ceil(navLinks.length / 2)).map((link, index) => (
                             <NavLink key={index} name={link.name} href={link.href} />
                         ))}
                         <ThemeToggle />

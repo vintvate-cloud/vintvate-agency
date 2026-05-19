@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
 import DeleteProjectButton from './DeleteProjectButton'
+import ProductToggle from './ProductToggle'
 import { ClientProfile, Project, Payment } from '@prisma/client'
 
 type ProjectWithRelations = Project & {
@@ -146,13 +147,19 @@ export default async function ProjectsPage() {
                                             )}
                                         </div>
 
-                                        <div className="flex gap-2">
+                                        <div className="flex gap-2 items-center flex-wrap">
+                                            <ProductToggle 
+                                                projectId={project.id} 
+                                                isProduct={project.isProduct} 
+                                                productType={project.productType} 
+                                            />
                                             <Link
                                                 href={`/admin/projects/edit/${project.id}`}
-                                                className="flex-1 py-1.5 font-inter text-[10px] font-bold uppercase tracking-widest text-[var(--foreground)] text-center border border-[var(--border)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors"
+                                                className="px-3 py-1.5 font-inter text-[10px] font-bold uppercase tracking-widest text-[var(--foreground)] text-center border border-[var(--border)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors ml-auto"
                                             >
-                                                Manage Ops
+                                                Edit
                                             </Link>
+
                                             <DeleteProjectButton projectId={project.id} />
                                         </div>
                                     </div>

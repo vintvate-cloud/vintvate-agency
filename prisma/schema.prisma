@@ -47,6 +47,8 @@ model Project {
   tags        String?
   envVars     String?        @db.Text
   type        String         @default("CLIENT") // CLIENT or TEMPLATE
+  isProduct   Boolean        @default(false)
+  productType String?        @default("WEB_PRODUCT") // WEB_PRODUCT or MOBILE_APP
 
   // Agency Management Fields
   status      String         @default("PLANNED") // PLANNED, PROGRESS, COMPLETED, PAUSED
@@ -81,4 +83,15 @@ model ClientProfile {
   projects  Project[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String?
+  link        String?
+  type        String   @default("WEB_PRODUCT") // MOBILE_APP or WEB_PRODUCT
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
