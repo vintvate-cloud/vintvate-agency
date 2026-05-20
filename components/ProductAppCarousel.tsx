@@ -51,12 +51,28 @@ export default function ProductAppCarousel({ projects }: { projects: Project[] }
                             transition={{ duration: 0.3 }}
                             className="absolute inset-0"
                         >
-                            <Image
-                                src={currentApp.image || "/placeholder-project.jpg"}
-                                alt={currentApp.title}
-                                fill
-                                className="object-cover"
-                            />
+                            {currentApp.image ? (
+                                <Image
+                                    src={currentApp.image}
+                                    alt={currentApp.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                            ) : currentApp.link ? (
+                                <img
+                                    src={`https://api.microlink.io/?url=${encodeURIComponent(currentApp.link)}&screenshot=true&meta=false&embed=screenshot.url`}
+                                    alt={currentApp.title}
+                                    className="w-full h-full object-cover"
+                                    loading="lazy"
+                                />
+                            ) : (
+                                <Image
+                                    src="/placeholder-project.jpg"
+                                    alt={currentApp.title}
+                                    fill
+                                    className="object-cover"
+                                />
+                            )}
                         </motion.div>
                     </AnimatePresence>
                 </div>
